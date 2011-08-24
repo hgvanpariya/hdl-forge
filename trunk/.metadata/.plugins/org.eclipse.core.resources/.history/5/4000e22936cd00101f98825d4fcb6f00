@@ -1,0 +1,7 @@
+grammar com.ironglass.hdlforge.SystemVerilog with org.eclipse.xtext.common.Terminals
+
+generate systemVerilog "http://www.ironglass.com/hdlforge/SystemVerilog"
+
+Module hidden(WS):
+	'module 'name=ID
+;	
