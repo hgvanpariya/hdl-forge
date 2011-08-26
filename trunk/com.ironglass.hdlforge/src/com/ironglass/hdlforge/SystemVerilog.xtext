@@ -2,22 +2,89 @@ grammar com.ironglass.hdlforge.SystemVerilog with org.eclipse.xtext.common.Termi
 
 generate systemVerilog "http://www.ironglass.com/hdlforge/SystemVerilog"
 
-Module hidden(WS):
-	'module' name=ID
+Module:
+	'module' name=ID 
 	('#('parameters+=Parameter (',' parameters+=Parameter)* ')')?
 	'('
-	ports+=Port (',' ports+=Port)*
-	')'
+	(ports+=Port (',' ports+=Port)* )?
+	')' ';'
 	
-	//elemets+=Element
+	module_items+=Module_item
 	
 	'endmodule'
 ;	
+
+Module_item:
+	name=ID
+;
 
 Parameter:
 	name=ID
 ;
 
-Port hidden(WS): 
-	direction=('input'|'output'|'inout') name=ID
+Port: 
+	direction=PORT_DIRECTION (size=(INT)'1' left_bound=(INT)'0' right_bound=(INT)'0'|size=(INT)) name=ID
 ;
+
+
+/*
+ * Some added terminals, should add this to a separate file maybe?
+ */
+ 
+terminal PORT_DIRECTION:
+	 'input' | 'output' | 'inout' | 'ref' 
+; 
+
+terminal ASSIGNMENT_OPERATOR: 
+	'=' | '+=' | '-=' | '*=' | '/=' | '%=' | '&=' | '|=' | '^=' | '<<=' | '>>=' | '<<<=' | '>>>='
+;
+ 
+terminal UNARY_OPERATOR: 
+	'+' | '-' | '!' | '~' | '&' | '~&' | '|' | '~|' | '^' | '~^' | '^~'
+; 
+
+terminal BINARY_OPERATOR: 
+	'+' | '-' | '*' | '/' | '%' | '==' | '!='| '===' | '!==' | '=?=' | '!?=' | '&&' | '||' | '**' 
+	| '<' | '<=' | '>' | '>=' | '&' | '|' | '^' | '^~' | '~^' | '>>' | '<<' | '>>>' | '<<<' 
+;
+
+terminal INC_OR_DEC_OPERATOR:
+	'++' | '--'
+;
+ 
+terminal UNARY_MODULE_PATH_OPERATOR: 
+	'!' | '~' | '&' | '~&' | '|' | '~|' | '^' | '~^' | '^~'
+; 
+
+terminal BINARY_MODULE_PATH_OPERATOR: 
+	'==' | '!=' | '&&' | '||' | '&' | '|' | '^' | '^~' | '~^'
+; 
+
+terminal CMOS_SWITCHTYPE: 
+	'cmos' | 'rcmos'
+; 
+
+terminal ENABLE_GATETYPE: 
+	'bufif0' | 'bufif1' | 'notif0' | 'notif1'
+; 
+
+terminal MOS_SWITCHTYPE: 
+	'nmos' | 'pmos' | 'rnmos' | 'rpmos'
+; 
+
+terminal N_INPUT_GATETYPE: 
+	'and' | 'nand' | 'or' | 'nor' | 'xor' | 'xnor'
+; 
+
+terminal N_OUTPUT_GATETYPE: 
+	'buf' | 'not'
+; 
+
+terminal PASS_EN_SWITCHTYPE: 
+	'tranif0' | 'tranif1' | 'rtranif1' | 'rtranif0'
+; 
+
+terminal PASS_SWITCHTYPE: 
+	'tran' | 'rtran'
+;
+
