@@ -1,9 +1,0 @@
-grammar com.ironglass.hdlforge.SystemVerilog with org.eclipse.xtext.common.Terminals
-
-generate systemVerilog "http://www.ironglass.com/hdlforge/SystemVerilog"
-
-Model:
-	greetings+=Greeting*;
-	
-Greeting:
-	'Hello' name=ID '!';
