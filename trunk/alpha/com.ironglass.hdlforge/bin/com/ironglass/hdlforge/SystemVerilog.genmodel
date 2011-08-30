@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.ironglass.hdlforge/src-gen"
+    editDirectory="/com.ironglass.hdlforge.edit/src" editorDirectory="/com.ironglass.hdlforge.editor/src"
+    modelPluginID="com.ironglass.hdlforge" forceOverwrite="true" modelName="SystemVerilog"
+    updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="com.ironglass.hdlforge.edit"
+    editorPluginID="com.ironglass.hdlforge.editor">
+  <genPackages prefix="SystemVerilog" basePackage="com.ironglass.hdlforge" disposableProviderFactory="true"
+      ecorePackage="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#/">
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Module">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Module/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Module/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Module/ports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Module/module_items"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Module_item"/>
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Parameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Parameter/name"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Port">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Port/direction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Port/name"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//VARIABLE_DECLARATION">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//VARIABLE_DECLARATION/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
