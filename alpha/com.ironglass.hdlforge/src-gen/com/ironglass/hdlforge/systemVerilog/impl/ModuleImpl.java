@@ -6,8 +6,8 @@
  */
 package com.ironglass.hdlforge.systemVerilog.impl;
 
+import com.ironglass.hdlforge.systemVerilog.MODULE_ITEM;
 import com.ironglass.hdlforge.systemVerilog.Module;
-import com.ironglass.hdlforge.systemVerilog.Module_item;
 import com.ironglass.hdlforge.systemVerilog.Parameter;
 import com.ironglass.hdlforge.systemVerilog.Port;
 import com.ironglass.hdlforge.systemVerilog.SystemVerilogPackage;
@@ -94,7 +94,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module
    * @generated
    * @ordered
    */
-  protected EList<Module_item> module_items;
+  protected EList<MODULE_ITEM> module_items;
 
   /**
    * <!-- begin-user-doc -->
@@ -173,11 +173,11 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Module_item> getModule_items()
+  public EList<MODULE_ITEM> getModule_items()
   {
     if (module_items == null)
     {
-      module_items = new EObjectContainmentEList<Module_item>(Module_item.class, this, SystemVerilogPackage.MODULE__MODULE_ITEMS);
+      module_items = new EObjectContainmentEList<MODULE_ITEM>(MODULE_ITEM.class, this, SystemVerilogPackage.MODULE__MODULE_ITEMS);
     }
     return module_items;
   }
@@ -248,7 +248,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module
         return;
       case SystemVerilogPackage.MODULE__MODULE_ITEMS:
         getModule_items().clear();
-        getModule_items().addAll((Collection<? extends Module_item>)newValue);
+        getModule_items().addAll((Collection<? extends MODULE_ITEM>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

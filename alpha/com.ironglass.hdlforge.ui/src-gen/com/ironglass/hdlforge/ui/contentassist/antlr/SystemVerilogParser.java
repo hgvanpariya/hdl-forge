@@ -37,16 +37,37 @@ public class SystemVerilogParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getMODULE_COMMON_ITEMAccess().getAlternatives(), "rule__MODULE_COMMON_ITEM__Alternatives");
+					put(grammarAccess.getPACKAGE_OR_GENERATE_ITEM_DECLARATIONAccess().getAlternatives(), "rule__PACKAGE_OR_GENERATE_ITEM_DECLARATION__Alternatives");
+					put(grammarAccess.getNET_TYPE_OR_TRIREGAccess().getAlternatives(), "rule__NET_TYPE_OR_TRIREG__Alternatives");
+					put(grammarAccess.getNET_TYPEAccess().getAlternatives(), "rule__NET_TYPE__Alternatives");
+					put(grammarAccess.getLIFETIMEAccess().getAlternatives(), "rule__LIFETIME__Alternatives");
 					put(grammarAccess.getINTEGER_VECTOR_TYPEAccess().getAlternatives(), "rule__INTEGER_VECTOR_TYPE__Alternatives");
 					put(grammarAccess.getMODULE_KEYWORDAccess().getAlternatives(), "rule__MODULE_KEYWORD__Alternatives");
 					put(grammarAccess.getPORT_DIRECTIONAccess().getAlternatives(), "rule__PORT_DIRECTION__Alternatives");
+					put(grammarAccess.getNUMBERAccess().getAlternatives(), "rule__NUMBER__Alternatives");
 					put(grammarAccess.getModuleAccess().getGroup(), "rule__Module__Group__0");
 					put(grammarAccess.getModuleAccess().getGroup_2(), "rule__Module__Group_2__0");
 					put(grammarAccess.getModuleAccess().getGroup_2_2(), "rule__Module__Group_2_2__0");
 					put(grammarAccess.getModuleAccess().getGroup_4(), "rule__Module__Group_4__0");
 					put(grammarAccess.getModuleAccess().getGroup_4_1(), "rule__Module__Group_4_1__0");
 					put(grammarAccess.getPortAccess().getGroup(), "rule__Port__Group__0");
+					put(grammarAccess.getCONTINUOUS_ASSIGNAccess().getGroup(), "rule__CONTINUOUS_ASSIGN__Group__0");
+					put(grammarAccess.getLIST_OF_NET_ASSIGNMENTSAccess().getGroup(), "rule__LIST_OF_NET_ASSIGNMENTS__Group__0");
+					put(grammarAccess.getLIST_OF_NET_ASSIGNMENTSAccess().getGroup_1(), "rule__LIST_OF_NET_ASSIGNMENTS__Group_1__0");
+					put(grammarAccess.getNET_ASSIGNMENTAccess().getGroup(), "rule__NET_ASSIGNMENT__Group__0");
+					put(grammarAccess.getNET_DECLARATIONAccess().getGroup(), "rule__NET_DECLARATION__Group__0");
+					put(grammarAccess.getLIST_OF_NET_DECL_ASSIGNMENTSAccess().getGroup(), "rule__LIST_OF_NET_DECL_ASSIGNMENTS__Group__0");
+					put(grammarAccess.getLIST_OF_NET_DECL_ASSIGNMENTSAccess().getGroup_1(), "rule__LIST_OF_NET_DECL_ASSIGNMENTS__Group_1__0");
+					put(grammarAccess.getNET_DECL_ASSIGNMENTAccess().getGroup(), "rule__NET_DECL_ASSIGNMENT__Group__0");
+					put(grammarAccess.getNET_DECL_ASSIGNMENTAccess().getGroup_2(), "rule__NET_DECL_ASSIGNMENT__Group_2__0");
+					put(grammarAccess.getUNPACKED_DIMENSIONSAccess().getGroup(), "rule__UNPACKED_DIMENSIONS__Group__0");
+					put(grammarAccess.getDATA_DECLARATIONAccess().getGroup(), "rule__DATA_DECLARATION__Group__0");
 					put(grammarAccess.getVARIABLE_DECLARATIONAccess().getGroup(), "rule__VARIABLE_DECLARATION__Group__0");
+					put(grammarAccess.getLIST_OF_VARIABLE_DECL_ASSIGNMENTSAccess().getGroup(), "rule__LIST_OF_VARIABLE_DECL_ASSIGNMENTS__Group__0");
+					put(grammarAccess.getLIST_OF_VARIABLE_DECL_ASSIGNMENTSAccess().getGroup_1(), "rule__LIST_OF_VARIABLE_DECL_ASSIGNMENTS__Group_1__0");
+					put(grammarAccess.getVARIABLE_DECL_ASSIGNMENTAccess().getGroup(), "rule__VARIABLE_DECL_ASSIGNMENT__Group__0");
+					put(grammarAccess.getVARIABLE_DECL_ASSIGNMENTAccess().getGroup_2(), "rule__VARIABLE_DECL_ASSIGNMENT__Group_2__0");
 					put(grammarAccess.getModuleAccess().getNameAssignment_1(), "rule__Module__NameAssignment_1");
 					put(grammarAccess.getModuleAccess().getParametersAssignment_2_1(), "rule__Module__ParametersAssignment_2_1");
 					put(grammarAccess.getModuleAccess().getParametersAssignment_2_2_1(), "rule__Module__ParametersAssignment_2_2_1");
@@ -56,7 +77,20 @@ public class SystemVerilogParser extends AbstractContentAssistParser {
 					put(grammarAccess.getParameterAccess().getNameAssignment(), "rule__Parameter__NameAssignment");
 					put(grammarAccess.getPortAccess().getDirectionAssignment_0(), "rule__Port__DirectionAssignment_0");
 					put(grammarAccess.getPortAccess().getNameAssignment_1(), "rule__Port__NameAssignment_1");
-					put(grammarAccess.getVARIABLE_DECLARATIONAccess().getNameAssignment_1(), "rule__VARIABLE_DECLARATION__NameAssignment_1");
+					put(grammarAccess.getLIST_OF_NET_ASSIGNMENTSAccess().getAssignmentsAssignment_0(), "rule__LIST_OF_NET_ASSIGNMENTS__AssignmentsAssignment_0");
+					put(grammarAccess.getLIST_OF_NET_ASSIGNMENTSAccess().getAssignmentsAssignment_1_1(), "rule__LIST_OF_NET_ASSIGNMENTS__AssignmentsAssignment_1_1");
+					put(grammarAccess.getLIST_OF_NET_DECL_ASSIGNMENTSAccess().getNetsAssignment_0(), "rule__LIST_OF_NET_DECL_ASSIGNMENTS__NetsAssignment_0");
+					put(grammarAccess.getLIST_OF_NET_DECL_ASSIGNMENTSAccess().getNetsAssignment_1_1(), "rule__LIST_OF_NET_DECL_ASSIGNMENTS__NetsAssignment_1_1");
+					put(grammarAccess.getNET_DECL_ASSIGNMENTAccess().getNameAssignment_0(), "rule__NET_DECL_ASSIGNMENT__NameAssignment_0");
+					put(grammarAccess.getNET_DECL_ASSIGNMENTAccess().getDimensionsAssignment_1(), "rule__NET_DECL_ASSIGNMENT__DimensionsAssignment_1");
+					put(grammarAccess.getNET_DECL_ASSIGNMENTAccess().getValueAssignment_2_1(), "rule__NET_DECL_ASSIGNMENT__ValueAssignment_2_1");
+					put(grammarAccess.getUNPACKED_DIMENSIONSAccess().getLeft_boundAssignment_1(), "rule__UNPACKED_DIMENSIONS__Left_boundAssignment_1");
+					put(grammarAccess.getUNPACKED_DIMENSIONSAccess().getRight_boundAssignment_3(), "rule__UNPACKED_DIMENSIONS__Right_boundAssignment_3");
+					put(grammarAccess.getLIST_OF_VARIABLE_DECL_ASSIGNMENTSAccess().getVariablesAssignment_0(), "rule__LIST_OF_VARIABLE_DECL_ASSIGNMENTS__VariablesAssignment_0");
+					put(grammarAccess.getLIST_OF_VARIABLE_DECL_ASSIGNMENTSAccess().getVariablesAssignment_1_1(), "rule__LIST_OF_VARIABLE_DECL_ASSIGNMENTS__VariablesAssignment_1_1");
+					put(grammarAccess.getVARIABLE_DECL_ASSIGNMENTAccess().getNameAssignment_0(), "rule__VARIABLE_DECL_ASSIGNMENT__NameAssignment_0");
+					put(grammarAccess.getVARIABLE_DECL_ASSIGNMENTAccess().getDimensionsAssignment_1(), "rule__VARIABLE_DECL_ASSIGNMENT__DimensionsAssignment_1");
+					put(grammarAccess.getVARIABLE_DECL_ASSIGNMENTAccess().getValueAssignment_2_1(), "rule__VARIABLE_DECL_ASSIGNMENT__ValueAssignment_2_1");
 				}
 			};
 		}

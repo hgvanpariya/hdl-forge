@@ -12,10 +12,9 @@
         eType="ecore:EClass platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Port"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="module_items" upperBound="-1"
-        eType="ecore:EClass platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Module_item"
+        eType="ecore:EClass platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//MODULE_ITEM"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Module_item"/>
   <eClassifiers xsi:type="ecore:EClass" name="Parameter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -23,7 +22,49 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VARIABLE_DECLARATION" eSuperTypes="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Module_item">
+  <eClassifiers xsi:type="ecore:EClass" name="MODULE_ITEM"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NON_PORT_MODULE_ITEM" eSuperTypes="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//MODULE_ITEM"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MODULE_OR_GENERATE_ITEM" eSuperTypes="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//NON_PORT_MODULE_ITEM"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MODULE_COMMON_ITEM" eSuperTypes="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//MODULE_OR_GENERATE_ITEM"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CONTINUOUS_ASSIGN" eSuperTypes="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//MODULE_COMMON_ITEM"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LIST_OF_NET_ASSIGNMENTS" eSuperTypes="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//CONTINUOUS_ASSIGN">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="assignments" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MODULE_OR_GENERATE_ITEM_DECLARATION"
+      eSuperTypes="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//MODULE_COMMON_ITEM"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PACKAGE_OR_GENERATE_ITEM_DECLARATION"
+      eSuperTypes="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//MODULE_OR_GENERATE_ITEM_DECLARATION"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NET_DECLARATION" eSuperTypes="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//PACKAGE_OR_GENERATE_ITEM_DECLARATION"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LIST_OF_NET_DECL_ASSIGNMENTS" eSuperTypes="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//NET_DECLARATION">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nets" upperBound="-1" eType="ecore:EClass platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//NET_DECL_ASSIGNMENT"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NET_DECL_ASSIGNMENT">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dimensions" upperBound="-1"
+        eType="ecore:EClass platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//UNPACKED_DIMENSIONS"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UNPACKED_DIMENSIONS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="left_bound" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="right_bound" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DATA_DECLARATION" eSuperTypes="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//PACKAGE_OR_GENERATE_ITEM_DECLARATION"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VARIABLE_DECLARATION" eSuperTypes="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//DATA_DECLARATION"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LIST_OF_VARIABLE_DECL_ASSIGNMENTS" eSuperTypes="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//VARIABLE_DECLARATION">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
+        eType="ecore:EClass platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//VARIABLE_DECL_ASSIGNMENT"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VARIABLE_DECL_ASSIGNMENT">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dimensions" upperBound="-1"
+        eType="ecore:EClass platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//UNPACKED_DIMENSIONS"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

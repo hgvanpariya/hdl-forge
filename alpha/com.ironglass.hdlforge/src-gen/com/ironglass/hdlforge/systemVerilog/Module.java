@@ -91,7 +91,7 @@ public interface Module extends EObject
 
   /**
    * Returns the value of the '<em><b>Module items</b></em>' containment reference list.
-   * The list contents are of type {@link com.ironglass.hdlforge.systemVerilog.Module_item}.
+   * The list contents are of type {@link com.ironglass.hdlforge.systemVerilog.MODULE_ITEM}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Module items</em>' containment reference list isn't clear,
@@ -103,6 +103,6 @@ public interface Module extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<Module_item> getModule_items();
+  EList<MODULE_ITEM> getModule_items();
 
 } // Module

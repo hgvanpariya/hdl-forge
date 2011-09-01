@@ -3,11 +3,16 @@ package com.ironglass.hdlforge.serializer;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.ironglass.hdlforge.services.SystemVerilogGrammarAccess;
+import com.ironglass.hdlforge.systemVerilog.LIST_OF_NET_ASSIGNMENTS;
+import com.ironglass.hdlforge.systemVerilog.LIST_OF_NET_DECL_ASSIGNMENTS;
+import com.ironglass.hdlforge.systemVerilog.LIST_OF_VARIABLE_DECL_ASSIGNMENTS;
 import com.ironglass.hdlforge.systemVerilog.Module;
+import com.ironglass.hdlforge.systemVerilog.NET_DECL_ASSIGNMENT;
 import com.ironglass.hdlforge.systemVerilog.Parameter;
 import com.ironglass.hdlforge.systemVerilog.Port;
 import com.ironglass.hdlforge.systemVerilog.SystemVerilogPackage;
-import com.ironglass.hdlforge.systemVerilog.VARIABLE_DECLARATION;
+import com.ironglass.hdlforge.systemVerilog.UNPACKED_DIMENSIONS;
+import com.ironglass.hdlforge.systemVerilog.VARIABLE_DECL_ASSIGNMENT;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
@@ -48,9 +53,53 @@ public class AbstractSystemVerilogSemanticSequencer extends AbstractSemanticSequ
 	
 	public void createSequence(EObject context, EObject semanticObject) {
 		if(semanticObject.eClass().getEPackage() == SystemVerilogPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
+			case SystemVerilogPackage.LIST_OF_NET_ASSIGNMENTS:
+				if(context == grammarAccess.getMODULE_ITEMRule() ||
+				   context == grammarAccess.getNON_PORT_MODULE_ITEMRule() ||
+				   context == grammarAccess.getMODULE_OR_GENERATE_ITEMRule() ||
+				   context == grammarAccess.getMODULE_COMMON_ITEMRule() ||
+				   context == grammarAccess.getCONTINUOUS_ASSIGNRule() ||
+				   context == grammarAccess.getLIST_OF_NET_ASSIGNMENTSRule()) {
+					sequence_LIST_OF_NET_ASSIGNMENTS_LIST_OF_NET_ASSIGNMENTS(context, (LIST_OF_NET_ASSIGNMENTS) semanticObject); 
+					return; 
+				}
+				else break;
+			case SystemVerilogPackage.LIST_OF_NET_DECL_ASSIGNMENTS:
+				if(context == grammarAccess.getMODULE_ITEMRule() ||
+				   context == grammarAccess.getNON_PORT_MODULE_ITEMRule() ||
+				   context == grammarAccess.getMODULE_OR_GENERATE_ITEMRule() ||
+				   context == grammarAccess.getMODULE_COMMON_ITEMRule() ||
+				   context == grammarAccess.getMODULE_OR_GENERATE_ITEM_DECLARATIONRule() ||
+				   context == grammarAccess.getPACKAGE_OR_GENERATE_ITEM_DECLARATIONRule() ||
+				   context == grammarAccess.getNET_DECLARATIONRule() ||
+				   context == grammarAccess.getLIST_OF_NET_DECL_ASSIGNMENTSRule()) {
+					sequence_LIST_OF_NET_DECL_ASSIGNMENTS_LIST_OF_NET_DECL_ASSIGNMENTS(context, (LIST_OF_NET_DECL_ASSIGNMENTS) semanticObject); 
+					return; 
+				}
+				else break;
+			case SystemVerilogPackage.LIST_OF_VARIABLE_DECL_ASSIGNMENTS:
+				if(context == grammarAccess.getMODULE_ITEMRule() ||
+				   context == grammarAccess.getNON_PORT_MODULE_ITEMRule() ||
+				   context == grammarAccess.getMODULE_OR_GENERATE_ITEMRule() ||
+				   context == grammarAccess.getMODULE_COMMON_ITEMRule() ||
+				   context == grammarAccess.getMODULE_OR_GENERATE_ITEM_DECLARATIONRule() ||
+				   context == grammarAccess.getPACKAGE_OR_GENERATE_ITEM_DECLARATIONRule() ||
+				   context == grammarAccess.getDATA_DECLARATIONRule() ||
+				   context == grammarAccess.getVARIABLE_DECLARATIONRule() ||
+				   context == grammarAccess.getLIST_OF_VARIABLE_DECL_ASSIGNMENTSRule()) {
+					sequence_LIST_OF_VARIABLE_DECL_ASSIGNMENTS_LIST_OF_VARIABLE_DECL_ASSIGNMENTS(context, (LIST_OF_VARIABLE_DECL_ASSIGNMENTS) semanticObject); 
+					return; 
+				}
+				else break;
 			case SystemVerilogPackage.MODULE:
 				if(context == grammarAccess.getModuleRule()) {
 					sequence_Module_Module(context, (Module) semanticObject); 
+					return; 
+				}
+				else break;
+			case SystemVerilogPackage.NET_DECL_ASSIGNMENT:
+				if(context == grammarAccess.getNET_DECL_ASSIGNMENTRule()) {
+					sequence_NET_DECL_ASSIGNMENT_NET_DECL_ASSIGNMENT(context, (NET_DECL_ASSIGNMENT) semanticObject); 
 					return; 
 				}
 				else break;
@@ -66,10 +115,15 @@ public class AbstractSystemVerilogSemanticSequencer extends AbstractSemanticSequ
 					return; 
 				}
 				else break;
-			case SystemVerilogPackage.VARIABLE_DECLARATION:
-				if(context == grammarAccess.getModule_itemRule() ||
-				   context == grammarAccess.getVARIABLE_DECLARATIONRule()) {
-					sequence_VARIABLE_DECLARATION_VARIABLE_DECLARATION(context, (VARIABLE_DECLARATION) semanticObject); 
+			case SystemVerilogPackage.UNPACKED_DIMENSIONS:
+				if(context == grammarAccess.getUNPACKED_DIMENSIONSRule()) {
+					sequence_UNPACKED_DIMENSIONS_UNPACKED_DIMENSIONS(context, (UNPACKED_DIMENSIONS) semanticObject); 
+					return; 
+				}
+				else break;
+			case SystemVerilogPackage.VARIABLE_DECL_ASSIGNMENT:
+				if(context == grammarAccess.getVARIABLE_DECL_ASSIGNMENTRule()) {
+					sequence_VARIABLE_DECL_ASSIGNMENT_VARIABLE_DECL_ASSIGNMENT(context, (VARIABLE_DECL_ASSIGNMENT) semanticObject); 
 					return; 
 				}
 				else break;
@@ -79,7 +133,43 @@ public class AbstractSystemVerilogSemanticSequencer extends AbstractSemanticSequ
 	
 	/**
 	 * Constraint:
-	 *     (name=ID (parameters+=Parameter parameters+=Parameter*)? (ports+=Port ports+=Port*)? module_items+=Module_item*)
+	 *     (assignments+=NET_ASSIGNMENT assignments+=NET_ASSIGNMENT*)
+	 *
+	 * Features:
+	 *    assignments[1, *]
+	 */
+	protected void sequence_LIST_OF_NET_ASSIGNMENTS_LIST_OF_NET_ASSIGNMENTS(EObject context, LIST_OF_NET_ASSIGNMENTS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (nets+=NET_DECL_ASSIGNMENT nets+=NET_DECL_ASSIGNMENT*)
+	 *
+	 * Features:
+	 *    nets[1, *]
+	 */
+	protected void sequence_LIST_OF_NET_DECL_ASSIGNMENTS_LIST_OF_NET_DECL_ASSIGNMENTS(EObject context, LIST_OF_NET_DECL_ASSIGNMENTS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (variables+=VARIABLE_DECL_ASSIGNMENT variables+=VARIABLE_DECL_ASSIGNMENT*)
+	 *
+	 * Features:
+	 *    variables[1, *]
+	 */
+	protected void sequence_LIST_OF_VARIABLE_DECL_ASSIGNMENTS_LIST_OF_VARIABLE_DECL_ASSIGNMENTS(EObject context, LIST_OF_VARIABLE_DECL_ASSIGNMENTS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=ID (parameters+=Parameter parameters+=Parameter*)? (ports+=Port ports+=Port*)? module_items+=MODULE_ITEM*)
 	 *
 	 * Features:
 	 *    name[1, 1]
@@ -88,6 +178,20 @@ public class AbstractSystemVerilogSemanticSequencer extends AbstractSemanticSequ
 	 *    module_items[0, *]
 	 */
 	protected void sequence_Module_Module(EObject context, Module semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=ID dimensions+=UNPACKED_DIMENSIONS* value=NUMBER?)
+	 *
+	 * Features:
+	 *    name[1, 1]
+	 *    dimensions[0, *]
+	 *    value[0, 1]
+	 */
+	protected void sequence_NET_DECL_ASSIGNMENT_NET_DECL_ASSIGNMENT(EObject context, NET_DECL_ASSIGNMENT semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -136,19 +240,27 @@ public class AbstractSystemVerilogSemanticSequencer extends AbstractSemanticSequ
 	
 	/**
 	 * Constraint:
-	 *     name=ID
+	 *     (left_bound+=INT right_bound+=INT)
+	 *
+	 * Features:
+	 *    left_bound[1, 1]
+	 *    right_bound[1, 1]
+	 */
+	protected void sequence_UNPACKED_DIMENSIONS_UNPACKED_DIMENSIONS(EObject context, UNPACKED_DIMENSIONS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=ID dimensions+=UNPACKED_DIMENSIONS* value=NUMBER?)
 	 *
 	 * Features:
 	 *    name[1, 1]
+	 *    dimensions[0, *]
+	 *    value[0, 1]
 	 */
-	protected void sequence_VARIABLE_DECLARATION_VARIABLE_DECLARATION(EObject context, VARIABLE_DECLARATION semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SystemVerilogPackage.Literals.VARIABLE_DECLARATION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SystemVerilogPackage.Literals.VARIABLE_DECLARATION__NAME));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getVARIABLE_DECLARATIONAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.finish();
+	protected void sequence_VARIABLE_DECL_ASSIGNMENT_VARIABLE_DECL_ASSIGNMENT(EObject context, VARIABLE_DECL_ASSIGNMENT semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 }

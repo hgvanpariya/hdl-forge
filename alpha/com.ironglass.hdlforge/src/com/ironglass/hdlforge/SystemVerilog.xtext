@@ -7,14 +7,12 @@ Module:
 	('#('parameters+=Parameter (',' parameters+=Parameter)* ')')?
 	'(' (ports+=Port (',' ports+=Port)* )? ')' ';'
 	
-	(module_items+=Module_item)*
+	(module_items+=MODULE_ITEM)*
 	
 	'endmodule'
 ;	
 
-Module_item:
-	VARIABLE_DECLARATION
-;
+
 
 Parameter:
 	name=ID
@@ -27,13 +25,118 @@ Port:
 /*
  * Keywords
  */
-VARIABLE_DECLARATION:
-	DATA_TYPE name=ID ';'
+ 
+MODULE_ITEM:
+	NON_PORT_MODULE_ITEM
 ;
+ 
+NON_PORT_MODULE_ITEM:
+	MODULE_OR_GENERATE_ITEM
+;
+
+MODULE_OR_GENERATE_ITEM:
+	MODULE_COMMON_ITEM
+;
+ 
+MODULE_COMMON_ITEM:
+	MODULE_OR_GENERATE_ITEM_DECLARATION
+	|CONTINUOUS_ASSIGN
+;
+
+//TODO: add DELAY3
+CONTINUOUS_ASSIGN:
+	'assign' (DRIVE_STRENGTH)? LIST_OF_NET_ASSIGNMENTS ';'
+	//| 'assign' (DELAY_CONTROL)? LIST_OF_VARIABLE_ASSIGNMENTS ';'
+;
+
+LIST_OF_NET_ASSIGNMENTS:
+	assignments+=NET_ASSIGNMENT (',' assignments+=NET_ASSIGNMENT)*
+;
+
+
+
+//TODO: flesh out EXPRESSION
+NET_ASSIGNMENT:
+	NET_LVALUE '=' NUMBER
+		
+;
+
+NET_LVALUE:
+	PS_OR_HIERARCHICAL_NET_IDENTIFIER
+;
+
+PS_OR_HIERARCHICAL_NET_IDENTIFIER:
+	NET_IDENTIFIER
+;
+
+NET_IDENTIFIER:
+	SIMPLE_IDENTIFIER
+;
+
+//TODO: finis expanding this, just going to use string now
+SIMPLE_IDENTIFIER:
+	ID
+;
+ 
+MODULE_OR_GENERATE_ITEM_DECLARATION:
+	PACKAGE_OR_GENERATE_ITEM_DECLARATION
+;
+ 
+PACKAGE_OR_GENERATE_ITEM_DECLARATION:
+	NET_DECLARATION
+	| DATA_DECLARATION
+; 
+NET_DECLARATION:
+	NET_TYPE_OR_TRIREG LIST_OF_NET_DECL_ASSIGNMENTS';'
+;
+ 
+LIST_OF_NET_DECL_ASSIGNMENTS:
+	nets+=NET_DECL_ASSIGNMENT (',' nets+=NET_DECL_ASSIGNMENT)*
+;
+
+NET_DECL_ASSIGNMENT:
+	name=ID (dimensions+=UNPACKED_DIMENSIONS)* ('=' value=NUMBER)? 
+;
+
+UNPACKED_DIMENSIONS:
+	'['left_bound+=INT':'right_bound+=INT']'
+;
+ 
+NET_TYPE_OR_TRIREG:
+	NET_TYPE | 'trireg'
+;
+ 
+NET_TYPE:
+	 'supply0' | 'supply1' | 'tri' | 'triand' | 'trior' | 'tri0' | 'tri1' | 'wire' | 'wand' | 'wor'
+;
+ 
+DATA_DECLARATION:
+	('const')? (LIFETIME)? VARIABLE_DECLARATION
+	
+;
+
+LIFETIME:
+	'static' | 'automatic'
+;
+ 
+VARIABLE_DECLARATION:
+	DATA_TYPE LIST_OF_VARIABLE_DECL_ASSIGNMENTS ';'
+;
+
+LIST_OF_VARIABLE_DECL_ASSIGNMENTS:
+	variables+=VARIABLE_DECL_ASSIGNMENT (',' variables+=VARIABLE_DECL_ASSIGNMENT)*
+;
+
+VARIABLE_DECL_ASSIGNMENT:
+	name=ID (dimensions+=UNPACKED_DIMENSIONS)* ('=' value=NUMBER)?
+;
+
  
 DATA_TYPE:
 	INTEGER_VECTOR_TYPE
 ;
+
+
 
 INTEGER_VECTOR_TYPE:
 	 'bit' | 'logic' | 'reg'
@@ -47,12 +150,84 @@ PORT_DIRECTION:
 	 'input' | 'output' | 'inout' | 'ref' 
 ; 
 
+NUMBER:
+	BINARY_NUMBER|OCTAL_NUMBER|HEX_NUMBER|DECIMAL_NUMBER
+;
+
+
+
 /*
- * Some added terminals, should add this to a separate file maybe?
+ * Number terminals
  */
 
- 
+terminal BINARY_NUMBER:
+	INT BINARY_BASE (BINARY_DIGIT)+
+;
 
+terminal OCTAL_NUMBER:
+	INT OCTAL_BASE (OCTAL_DIGIT)+
+;
+
+terminal HEX_NUMBER:
+	INT HEX_BASE (HEX_DIGIT)+
+;
+
+terminal DECIMAL_NUMBER:
+	INT DECIMAL_BASE INT
+;
+
+terminal BINARY_BASE:
+	("'"('s'|'S')?'b')|("'"('s'|'S')?'B') 
+;
+
+terminal DECIMAL_BASE:
+	("'"('s'|'S')?'d')|("'"('s'|'S')?'D')
+;
+ 
+terminal OCTAL_BASE:
+	("'"('s'|'S')?'o')|("'"('s'|'S')?'O')
+;
+
+terminal HEX_BASE:
+	("'"('s'|'S')?'h')|("'"('s'|'S')?'H')
+;
+
+terminal X_DIGIT:
+	'x'|'X'
+;
+
+terminal Z_DIGIT:
+	'z'|'Z'|'?'
+;
+
+terminal BINARY_DIGIT:
+	X_DIGIT|Z_DIGIT|'1'|'0'
+;
+
+terminal OCTAL_DIGIT:
+	BINARY_DIGIT| '2' | '3' | '4' | '5' | '6' | '7' 
+;
+
+terminal HEX_DIGIT:
+	OCTAL_DIGIT| '8' | '9' | 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F'
+;
+
+terminal STRENGTH0:
+	 'supply0' | 'strong0' | 'pull0' | 'weak0'
+;
+
+terminal STRENGTH1:
+	 'supply1' | 'strong1' | 'pull1' | 'weak1'
+;
+
+terminal DRIVE_STRENGTH:
+	'(' STRENGTH0 ',' STRENGTH1 ')'
+	| '(' STRENGTH1 ',' STRENGTH0 ')'
+	| '(' STRENGTH0 ',' 'highz1' ')'
+	| '(' STRENGTH1 ',' 'highz0' ')'
+	| '(' 'highz0' ',' STRENGTH1 ')'
+	| '(' 'highz1' ',' STRENGTH0 ')'
+;
 
 /*
 terminal ASSIGNMENT_OPERATOR: 
