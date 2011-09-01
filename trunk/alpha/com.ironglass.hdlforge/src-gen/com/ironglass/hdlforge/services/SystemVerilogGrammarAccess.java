@@ -43,16 +43,16 @@ public class SystemVerilogGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Assignment cModule_itemsAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cModule_itemsModule_itemParserRuleCall_7_0 = (RuleCall)cModule_itemsAssignment_7.eContents().get(0);
+		private final RuleCall cModule_itemsMODULE_ITEMParserRuleCall_7_0 = (RuleCall)cModule_itemsAssignment_7.eContents().get(0);
 		private final Keyword cEndmoduleKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//Module:
 		//	MODULE_KEYWORD name=ID ("#(" parameters+=Parameter ("," parameters+=Parameter)* ")")? "(" (ports+=Port (","
-		//	ports+=Port)*)? ")" ";" module_items+=Module_item* "endmodule";
+		//	ports+=Port)*)? ")" ";" module_items+=MODULE_ITEM* "endmodule";
 		public ParserRule getRule() { return rule; }
 
 		//MODULE_KEYWORD name=ID ("#(" parameters+=Parameter ("," parameters+=Parameter)* ")")? "(" (ports+=Port (","
-		//ports+=Port)*)? ")" ";" module_items+=Module_item* "endmodule"
+		//ports+=Port)*)? ")" ";" module_items+=MODULE_ITEM* "endmodule"
 		public Group getGroup() { return cGroup; }
 
 		//MODULE_KEYWORD
@@ -121,26 +121,14 @@ public class SystemVerilogGrammarAccess extends AbstractGrammarElementFinder {
 		//";"
 		public Keyword getSemicolonKeyword_6() { return cSemicolonKeyword_6; }
 
-		//module_items+=Module_item*
+		//module_items+=MODULE_ITEM*
 		public Assignment getModule_itemsAssignment_7() { return cModule_itemsAssignment_7; }
 
-		//Module_item
-		public RuleCall getModule_itemsModule_itemParserRuleCall_7_0() { return cModule_itemsModule_itemParserRuleCall_7_0; }
+		//MODULE_ITEM
+		public RuleCall getModule_itemsMODULE_ITEMParserRuleCall_7_0() { return cModule_itemsMODULE_ITEMParserRuleCall_7_0; }
 
 		//"endmodule"
 		public Keyword getEndmoduleKeyword_8() { return cEndmoduleKeyword_8; }
-	}
-
-	public class Module_itemElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Module_item");
-		private final RuleCall cVARIABLE_DECLARATIONParserRuleCall = (RuleCall)rule.eContents().get(1);
-		
-		//Module_item:
-		//	VARIABLE_DECLARATION;
-		public ParserRule getRule() { return rule; }
-
-		//VARIABLE_DECLARATION
-		public RuleCall getVARIABLE_DECLARATIONParserRuleCall() { return cVARIABLE_DECLARATIONParserRuleCall; }
 	}
 
 	public class ParameterElements extends AbstractParserRuleElementFinder {
@@ -187,34 +175,598 @@ public class SystemVerilogGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 	}
 
+	public class MODULE_ITEMElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MODULE_ITEM");
+		private final RuleCall cNON_PORT_MODULE_ITEMParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		/// *
+		// * Keywords
+		// * / MODULE_ITEM:
+		//	NON_PORT_MODULE_ITEM;
+		public ParserRule getRule() { return rule; }
+
+		//NON_PORT_MODULE_ITEM
+		public RuleCall getNON_PORT_MODULE_ITEMParserRuleCall() { return cNON_PORT_MODULE_ITEMParserRuleCall; }
+	}
+
+	public class NON_PORT_MODULE_ITEMElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NON_PORT_MODULE_ITEM");
+		private final RuleCall cMODULE_OR_GENERATE_ITEMParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//NON_PORT_MODULE_ITEM:
+		//	MODULE_OR_GENERATE_ITEM;
+		public ParserRule getRule() { return rule; }
+
+		//MODULE_OR_GENERATE_ITEM
+		public RuleCall getMODULE_OR_GENERATE_ITEMParserRuleCall() { return cMODULE_OR_GENERATE_ITEMParserRuleCall; }
+	}
+
+	public class MODULE_OR_GENERATE_ITEMElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MODULE_OR_GENERATE_ITEM");
+		private final RuleCall cMODULE_COMMON_ITEMParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//MODULE_OR_GENERATE_ITEM:
+		//	MODULE_COMMON_ITEM;
+		public ParserRule getRule() { return rule; }
+
+		//MODULE_COMMON_ITEM
+		public RuleCall getMODULE_COMMON_ITEMParserRuleCall() { return cMODULE_COMMON_ITEMParserRuleCall; }
+	}
+
+	public class MODULE_COMMON_ITEMElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MODULE_COMMON_ITEM");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cMODULE_OR_GENERATE_ITEM_DECLARATIONParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cCONTINUOUS_ASSIGNParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//MODULE_COMMON_ITEM:
+		//	MODULE_OR_GENERATE_ITEM_DECLARATION | CONTINUOUS_ASSIGN;
+		public ParserRule getRule() { return rule; }
+
+		//MODULE_OR_GENERATE_ITEM_DECLARATION | CONTINUOUS_ASSIGN
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//MODULE_OR_GENERATE_ITEM_DECLARATION
+		public RuleCall getMODULE_OR_GENERATE_ITEM_DECLARATIONParserRuleCall_0() { return cMODULE_OR_GENERATE_ITEM_DECLARATIONParserRuleCall_0; }
+
+		//CONTINUOUS_ASSIGN
+		public RuleCall getCONTINUOUS_ASSIGNParserRuleCall_1() { return cCONTINUOUS_ASSIGNParserRuleCall_1; }
+	}
+
+	public class CONTINUOUS_ASSIGNElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CONTINUOUS_ASSIGN");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cAssignKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final RuleCall cDRIVE_STRENGTHTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final RuleCall cLIST_OF_NET_ASSIGNMENTSParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		////TODO: add DELAY3
+		////| 'assign' (DELAY_CONTROL)? LIST_OF_VARIABLE_ASSIGNMENTS ';'
+		//CONTINUOUS_ASSIGN:
+		//	"assign" DRIVE_STRENGTH? LIST_OF_NET_ASSIGNMENTS ";";
+		public ParserRule getRule() { return rule; }
+
+		//"assign" DRIVE_STRENGTH? LIST_OF_NET_ASSIGNMENTS ";"
+		public Group getGroup() { return cGroup; }
+
+		//"assign"
+		public Keyword getAssignKeyword_0() { return cAssignKeyword_0; }
+
+		//DRIVE_STRENGTH?
+		public RuleCall getDRIVE_STRENGTHTerminalRuleCall_1() { return cDRIVE_STRENGTHTerminalRuleCall_1; }
+
+		//LIST_OF_NET_ASSIGNMENTS
+		public RuleCall getLIST_OF_NET_ASSIGNMENTSParserRuleCall_2() { return cLIST_OF_NET_ASSIGNMENTSParserRuleCall_2; }
+
+		//";"
+		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
+	}
+
+	public class LIST_OF_NET_ASSIGNMENTSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LIST_OF_NET_ASSIGNMENTS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cAssignmentsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cAssignmentsNET_ASSIGNMENTParserRuleCall_0_0 = (RuleCall)cAssignmentsAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cAssignmentsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cAssignmentsNET_ASSIGNMENTParserRuleCall_1_1_0 = (RuleCall)cAssignmentsAssignment_1_1.eContents().get(0);
+		
+		//LIST_OF_NET_ASSIGNMENTS:
+		//	assignments+=NET_ASSIGNMENT ("," assignments+=NET_ASSIGNMENT)*;
+		public ParserRule getRule() { return rule; }
+
+		//assignments+=NET_ASSIGNMENT ("," assignments+=NET_ASSIGNMENT)*
+		public Group getGroup() { return cGroup; }
+
+		//assignments+=NET_ASSIGNMENT
+		public Assignment getAssignmentsAssignment_0() { return cAssignmentsAssignment_0; }
+
+		//NET_ASSIGNMENT
+		public RuleCall getAssignmentsNET_ASSIGNMENTParserRuleCall_0_0() { return cAssignmentsNET_ASSIGNMENTParserRuleCall_0_0; }
+
+		//("," assignments+=NET_ASSIGNMENT)*
+		public Group getGroup_1() { return cGroup_1; }
+
+		//","
+		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
+
+		//assignments+=NET_ASSIGNMENT
+		public Assignment getAssignmentsAssignment_1_1() { return cAssignmentsAssignment_1_1; }
+
+		//NET_ASSIGNMENT
+		public RuleCall getAssignmentsNET_ASSIGNMENTParserRuleCall_1_1_0() { return cAssignmentsNET_ASSIGNMENTParserRuleCall_1_1_0; }
+	}
+
+	public class NET_ASSIGNMENTElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NET_ASSIGNMENT");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cNET_LVALUEParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final RuleCall cNUMBERParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		
+		////TODO: flesh out EXPRESSION
+		//NET_ASSIGNMENT:
+		//	NET_LVALUE "=" NUMBER;
+		public ParserRule getRule() { return rule; }
+
+		//NET_LVALUE "=" NUMBER
+		public Group getGroup() { return cGroup; }
+
+		//NET_LVALUE
+		public RuleCall getNET_LVALUEParserRuleCall_0() { return cNET_LVALUEParserRuleCall_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+
+		//NUMBER
+		public RuleCall getNUMBERParserRuleCall_2() { return cNUMBERParserRuleCall_2; }
+	}
+
+	public class NET_LVALUEElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NET_LVALUE");
+		private final RuleCall cPS_OR_HIERARCHICAL_NET_IDENTIFIERParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//NET_LVALUE:
+		//	PS_OR_HIERARCHICAL_NET_IDENTIFIER;
+		public ParserRule getRule() { return rule; }
+
+		//PS_OR_HIERARCHICAL_NET_IDENTIFIER
+		public RuleCall getPS_OR_HIERARCHICAL_NET_IDENTIFIERParserRuleCall() { return cPS_OR_HIERARCHICAL_NET_IDENTIFIERParserRuleCall; }
+	}
+
+	public class PS_OR_HIERARCHICAL_NET_IDENTIFIERElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PS_OR_HIERARCHICAL_NET_IDENTIFIER");
+		private final RuleCall cNET_IDENTIFIERParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//PS_OR_HIERARCHICAL_NET_IDENTIFIER:
+		//	NET_IDENTIFIER;
+		public ParserRule getRule() { return rule; }
+
+		//NET_IDENTIFIER
+		public RuleCall getNET_IDENTIFIERParserRuleCall() { return cNET_IDENTIFIERParserRuleCall; }
+	}
+
+	public class NET_IDENTIFIERElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NET_IDENTIFIER");
+		private final RuleCall cSIMPLE_IDENTIFIERParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//NET_IDENTIFIER:
+		//	SIMPLE_IDENTIFIER;
+		public ParserRule getRule() { return rule; }
+
+		//SIMPLE_IDENTIFIER
+		public RuleCall getSIMPLE_IDENTIFIERParserRuleCall() { return cSIMPLE_IDENTIFIERParserRuleCall; }
+	}
+
+	public class SIMPLE_IDENTIFIERElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SIMPLE_IDENTIFIER");
+		private final RuleCall cIDTerminalRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		////TODO: finis expanding this, just going to use string now
+		//SIMPLE_IDENTIFIER:
+		//	ID;
+		public ParserRule getRule() { return rule; }
+
+		//ID
+		public RuleCall getIDTerminalRuleCall() { return cIDTerminalRuleCall; }
+	}
+
+	public class MODULE_OR_GENERATE_ITEM_DECLARATIONElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MODULE_OR_GENERATE_ITEM_DECLARATION");
+		private final RuleCall cPACKAGE_OR_GENERATE_ITEM_DECLARATIONParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//MODULE_OR_GENERATE_ITEM_DECLARATION:
+		//	PACKAGE_OR_GENERATE_ITEM_DECLARATION;
+		public ParserRule getRule() { return rule; }
+
+		//PACKAGE_OR_GENERATE_ITEM_DECLARATION
+		public RuleCall getPACKAGE_OR_GENERATE_ITEM_DECLARATIONParserRuleCall() { return cPACKAGE_OR_GENERATE_ITEM_DECLARATIONParserRuleCall; }
+	}
+
+	public class PACKAGE_OR_GENERATE_ITEM_DECLARATIONElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PACKAGE_OR_GENERATE_ITEM_DECLARATION");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cNET_DECLARATIONParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cDATA_DECLARATIONParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//PACKAGE_OR_GENERATE_ITEM_DECLARATION:
+		//	NET_DECLARATION | DATA_DECLARATION;
+		public ParserRule getRule() { return rule; }
+
+		//NET_DECLARATION | DATA_DECLARATION
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//NET_DECLARATION
+		public RuleCall getNET_DECLARATIONParserRuleCall_0() { return cNET_DECLARATIONParserRuleCall_0; }
+
+		//DATA_DECLARATION
+		public RuleCall getDATA_DECLARATIONParserRuleCall_1() { return cDATA_DECLARATIONParserRuleCall_1; }
+	}
+
+	public class NET_DECLARATIONElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NET_DECLARATION");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cNET_TYPE_OR_TRIREGParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cLIST_OF_NET_DECL_ASSIGNMENTSParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//NET_DECLARATION:
+		//	NET_TYPE_OR_TRIREG LIST_OF_NET_DECL_ASSIGNMENTS ";";
+		public ParserRule getRule() { return rule; }
+
+		//NET_TYPE_OR_TRIREG LIST_OF_NET_DECL_ASSIGNMENTS ";"
+		public Group getGroup() { return cGroup; }
+
+		//NET_TYPE_OR_TRIREG
+		public RuleCall getNET_TYPE_OR_TRIREGParserRuleCall_0() { return cNET_TYPE_OR_TRIREGParserRuleCall_0; }
+
+		//LIST_OF_NET_DECL_ASSIGNMENTS
+		public RuleCall getLIST_OF_NET_DECL_ASSIGNMENTSParserRuleCall_1() { return cLIST_OF_NET_DECL_ASSIGNMENTSParserRuleCall_1; }
+
+		//";"
+		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
+	}
+
+	public class LIST_OF_NET_DECL_ASSIGNMENTSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LIST_OF_NET_DECL_ASSIGNMENTS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNetsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNetsNET_DECL_ASSIGNMENTParserRuleCall_0_0 = (RuleCall)cNetsAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cNetsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cNetsNET_DECL_ASSIGNMENTParserRuleCall_1_1_0 = (RuleCall)cNetsAssignment_1_1.eContents().get(0);
+		
+		//LIST_OF_NET_DECL_ASSIGNMENTS:
+		//	nets+=NET_DECL_ASSIGNMENT ("," nets+=NET_DECL_ASSIGNMENT)*;
+		public ParserRule getRule() { return rule; }
+
+		//nets+=NET_DECL_ASSIGNMENT ("," nets+=NET_DECL_ASSIGNMENT)*
+		public Group getGroup() { return cGroup; }
+
+		//nets+=NET_DECL_ASSIGNMENT
+		public Assignment getNetsAssignment_0() { return cNetsAssignment_0; }
+
+		//NET_DECL_ASSIGNMENT
+		public RuleCall getNetsNET_DECL_ASSIGNMENTParserRuleCall_0_0() { return cNetsNET_DECL_ASSIGNMENTParserRuleCall_0_0; }
+
+		//("," nets+=NET_DECL_ASSIGNMENT)*
+		public Group getGroup_1() { return cGroup_1; }
+
+		//","
+		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
+
+		//nets+=NET_DECL_ASSIGNMENT
+		public Assignment getNetsAssignment_1_1() { return cNetsAssignment_1_1; }
+
+		//NET_DECL_ASSIGNMENT
+		public RuleCall getNetsNET_DECL_ASSIGNMENTParserRuleCall_1_1_0() { return cNetsNET_DECL_ASSIGNMENTParserRuleCall_1_1_0; }
+	}
+
+	public class NET_DECL_ASSIGNMENTElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NET_DECL_ASSIGNMENT");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Assignment cDimensionsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cDimensionsUNPACKED_DIMENSIONSParserRuleCall_1_0 = (RuleCall)cDimensionsAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cEqualsSignKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cValueAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cValueNUMBERParserRuleCall_2_1_0 = (RuleCall)cValueAssignment_2_1.eContents().get(0);
+		
+		//NET_DECL_ASSIGNMENT:
+		//	name=ID dimensions+=UNPACKED_DIMENSIONS* ("=" value=NUMBER)?;
+		public ParserRule getRule() { return rule; }
+
+		//name=ID dimensions+=UNPACKED_DIMENSIONS* ("=" value=NUMBER)?
+		public Group getGroup() { return cGroup; }
+
+		//name=ID
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
+
+		//dimensions+=UNPACKED_DIMENSIONS*
+		public Assignment getDimensionsAssignment_1() { return cDimensionsAssignment_1; }
+
+		//UNPACKED_DIMENSIONS
+		public RuleCall getDimensionsUNPACKED_DIMENSIONSParserRuleCall_1_0() { return cDimensionsUNPACKED_DIMENSIONSParserRuleCall_1_0; }
+
+		//("=" value=NUMBER)?
+		public Group getGroup_2() { return cGroup_2; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_2_0() { return cEqualsSignKeyword_2_0; }
+
+		//value=NUMBER
+		public Assignment getValueAssignment_2_1() { return cValueAssignment_2_1; }
+
+		//NUMBER
+		public RuleCall getValueNUMBERParserRuleCall_2_1_0() { return cValueNUMBERParserRuleCall_2_1_0; }
+	}
+
+	public class UNPACKED_DIMENSIONSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UNPACKED_DIMENSIONS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cLeft_boundAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cLeft_boundINTTerminalRuleCall_1_0 = (RuleCall)cLeft_boundAssignment_1.eContents().get(0);
+		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cRight_boundAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cRight_boundINTTerminalRuleCall_3_0 = (RuleCall)cRight_boundAssignment_3.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//UNPACKED_DIMENSIONS:
+		//	"[" left_bound+=INT ":" right_bound+=INT "]";
+		public ParserRule getRule() { return rule; }
+
+		//"[" left_bound+=INT ":" right_bound+=INT "]"
+		public Group getGroup() { return cGroup; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+
+		//left_bound+=INT
+		public Assignment getLeft_boundAssignment_1() { return cLeft_boundAssignment_1; }
+
+		//INT
+		public RuleCall getLeft_boundINTTerminalRuleCall_1_0() { return cLeft_boundINTTerminalRuleCall_1_0; }
+
+		//":"
+		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
+
+		//right_bound+=INT
+		public Assignment getRight_boundAssignment_3() { return cRight_boundAssignment_3; }
+
+		//INT
+		public RuleCall getRight_boundINTTerminalRuleCall_3_0() { return cRight_boundINTTerminalRuleCall_3_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
+	}
+
+	public class NET_TYPE_OR_TRIREGElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NET_TYPE_OR_TRIREG");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cNET_TYPEParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final Keyword cTriregKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		
+		//NET_TYPE_OR_TRIREG:
+		//	NET_TYPE | "trireg";
+		public ParserRule getRule() { return rule; }
+
+		//NET_TYPE | "trireg"
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//NET_TYPE
+		public RuleCall getNET_TYPEParserRuleCall_0() { return cNET_TYPEParserRuleCall_0; }
+
+		//"trireg"
+		public Keyword getTriregKeyword_1() { return cTriregKeyword_1; }
+	}
+
+	public class NET_TYPEElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NET_TYPE");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cSupply0Keyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cSupply1Keyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cTriKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cTriandKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
+		private final Keyword cTriorKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
+		private final Keyword cTri0Keyword_5 = (Keyword)cAlternatives.eContents().get(5);
+		private final Keyword cTri1Keyword_6 = (Keyword)cAlternatives.eContents().get(6);
+		private final Keyword cWireKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
+		private final Keyword cWandKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
+		private final Keyword cWorKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
+		
+		//NET_TYPE:
+		//	"supply0" | "supply1" | "tri" | "triand" | "trior" | "tri0" | "tri1" | "wire" | "wand" | "wor";
+		public ParserRule getRule() { return rule; }
+
+		//"supply0" | "supply1" | "tri" | "triand" | "trior" | "tri0" | "tri1" | "wire" | "wand" | "wor"
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//"supply0"
+		public Keyword getSupply0Keyword_0() { return cSupply0Keyword_0; }
+
+		//"supply1"
+		public Keyword getSupply1Keyword_1() { return cSupply1Keyword_1; }
+
+		//"tri"
+		public Keyword getTriKeyword_2() { return cTriKeyword_2; }
+
+		//"triand"
+		public Keyword getTriandKeyword_3() { return cTriandKeyword_3; }
+
+		//"trior"
+		public Keyword getTriorKeyword_4() { return cTriorKeyword_4; }
+
+		//"tri0"
+		public Keyword getTri0Keyword_5() { return cTri0Keyword_5; }
+
+		//"tri1"
+		public Keyword getTri1Keyword_6() { return cTri1Keyword_6; }
+
+		//"wire"
+		public Keyword getWireKeyword_7() { return cWireKeyword_7; }
+
+		//"wand"
+		public Keyword getWandKeyword_8() { return cWandKeyword_8; }
+
+		//"wor"
+		public Keyword getWorKeyword_9() { return cWorKeyword_9; }
+	}
+
+	public class DATA_DECLARATIONElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DATA_DECLARATION");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cConstKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final RuleCall cLIFETIMEParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final RuleCall cVARIABLE_DECLARATIONParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		
+		//DATA_DECLARATION:
+		//	"const"? LIFETIME? VARIABLE_DECLARATION;
+		public ParserRule getRule() { return rule; }
+
+		//"const"? LIFETIME? VARIABLE_DECLARATION
+		public Group getGroup() { return cGroup; }
+
+		//"const"?
+		public Keyword getConstKeyword_0() { return cConstKeyword_0; }
+
+		//LIFETIME?
+		public RuleCall getLIFETIMEParserRuleCall_1() { return cLIFETIMEParserRuleCall_1; }
+
+		//VARIABLE_DECLARATION
+		public RuleCall getVARIABLE_DECLARATIONParserRuleCall_2() { return cVARIABLE_DECLARATIONParserRuleCall_2; }
+	}
+
+	public class LIFETIMEElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LIFETIME");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cStaticKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cAutomaticKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		
+		//LIFETIME:
+		//	"static" | "automatic";
+		public ParserRule getRule() { return rule; }
+
+		//"static" | "automatic"
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//"static"
+		public Keyword getStaticKeyword_0() { return cStaticKeyword_0; }
+
+		//"automatic"
+		public Keyword getAutomaticKeyword_1() { return cAutomaticKeyword_1; }
+	}
+
 	public class VARIABLE_DECLARATIONElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "VARIABLE_DECLARATION");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cDATA_TYPEParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final RuleCall cLIST_OF_VARIABLE_DECL_ASSIGNMENTSParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		/// *
-		// * Keywords
-		// * / VARIABLE_DECLARATION:
-		//	DATA_TYPE name=ID ";";
+		//VARIABLE_DECLARATION:
+		//	DATA_TYPE LIST_OF_VARIABLE_DECL_ASSIGNMENTS ";";
 		public ParserRule getRule() { return rule; }
 
-		//DATA_TYPE name=ID ";"
+		//DATA_TYPE LIST_OF_VARIABLE_DECL_ASSIGNMENTS ";"
 		public Group getGroup() { return cGroup; }
 
 		//DATA_TYPE
 		public RuleCall getDATA_TYPEParserRuleCall_0() { return cDATA_TYPEParserRuleCall_0; }
 
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		//LIST_OF_VARIABLE_DECL_ASSIGNMENTS
+		public RuleCall getLIST_OF_VARIABLE_DECL_ASSIGNMENTSParserRuleCall_1() { return cLIST_OF_VARIABLE_DECL_ASSIGNMENTSParserRuleCall_1; }
 
 		//";"
 		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
+	}
+
+	public class LIST_OF_VARIABLE_DECL_ASSIGNMENTSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LIST_OF_VARIABLE_DECL_ASSIGNMENTS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cVariablesAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cVariablesVARIABLE_DECL_ASSIGNMENTParserRuleCall_0_0 = (RuleCall)cVariablesAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cVariablesAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cVariablesVARIABLE_DECL_ASSIGNMENTParserRuleCall_1_1_0 = (RuleCall)cVariablesAssignment_1_1.eContents().get(0);
+		
+		//LIST_OF_VARIABLE_DECL_ASSIGNMENTS:
+		//	variables+=VARIABLE_DECL_ASSIGNMENT ("," variables+=VARIABLE_DECL_ASSIGNMENT)*;
+		public ParserRule getRule() { return rule; }
+
+		//variables+=VARIABLE_DECL_ASSIGNMENT ("," variables+=VARIABLE_DECL_ASSIGNMENT)*
+		public Group getGroup() { return cGroup; }
+
+		//variables+=VARIABLE_DECL_ASSIGNMENT
+		public Assignment getVariablesAssignment_0() { return cVariablesAssignment_0; }
+
+		//VARIABLE_DECL_ASSIGNMENT
+		public RuleCall getVariablesVARIABLE_DECL_ASSIGNMENTParserRuleCall_0_0() { return cVariablesVARIABLE_DECL_ASSIGNMENTParserRuleCall_0_0; }
+
+		//("," variables+=VARIABLE_DECL_ASSIGNMENT)*
+		public Group getGroup_1() { return cGroup_1; }
+
+		//","
+		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
+
+		//variables+=VARIABLE_DECL_ASSIGNMENT
+		public Assignment getVariablesAssignment_1_1() { return cVariablesAssignment_1_1; }
+
+		//VARIABLE_DECL_ASSIGNMENT
+		public RuleCall getVariablesVARIABLE_DECL_ASSIGNMENTParserRuleCall_1_1_0() { return cVariablesVARIABLE_DECL_ASSIGNMENTParserRuleCall_1_1_0; }
+	}
+
+	public class VARIABLE_DECL_ASSIGNMENTElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "VARIABLE_DECL_ASSIGNMENT");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Assignment cDimensionsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cDimensionsUNPACKED_DIMENSIONSParserRuleCall_1_0 = (RuleCall)cDimensionsAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cEqualsSignKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cValueAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cValueNUMBERParserRuleCall_2_1_0 = (RuleCall)cValueAssignment_2_1.eContents().get(0);
+		
+		//VARIABLE_DECL_ASSIGNMENT:
+		//	name=ID dimensions+=UNPACKED_DIMENSIONS* ("=" value=NUMBER)?;
+		public ParserRule getRule() { return rule; }
+
+		//name=ID dimensions+=UNPACKED_DIMENSIONS* ("=" value=NUMBER)?
+		public Group getGroup() { return cGroup; }
+
+		//name=ID
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
+
+		//dimensions+=UNPACKED_DIMENSIONS*
+		public Assignment getDimensionsAssignment_1() { return cDimensionsAssignment_1; }
+
+		//UNPACKED_DIMENSIONS
+		public RuleCall getDimensionsUNPACKED_DIMENSIONSParserRuleCall_1_0() { return cDimensionsUNPACKED_DIMENSIONSParserRuleCall_1_0; }
+
+		//("=" value=NUMBER)?
+		public Group getGroup_2() { return cGroup_2; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_2_0() { return cEqualsSignKeyword_2_0; }
+
+		//value=NUMBER
+		public Assignment getValueAssignment_2_1() { return cValueAssignment_2_1; }
+
+		//NUMBER
+		public RuleCall getValueNUMBERParserRuleCall_2_1_0() { return cValueNUMBERParserRuleCall_2_1_0; }
 	}
 
 	public class DATA_TYPEElements extends AbstractParserRuleElementFinder {
@@ -281,62 +833,7 @@ public class SystemVerilogGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cInoutKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		private final Keyword cRefKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
 		
-		/// *
-		// * Some added terminals, should add this to a separate file maybe?
-		// * / / *
-		//terminal ASSIGNMENT_OPERATOR: 
-		//	'=' | '+=' | '-=' | '*=' | '/=' | '%=' | '&=' | '|=' | '^=' | '<<=' | '>>=' | '<<<=' | '>>>='
-		//;
-		// 
-		//terminal UNARY_OPERATOR: 
-		//	'+' | '-' | '!' | '~' | '&' | '~&' | '|' | '~|' | '^' | '~^' | '^~'
-		//; 
-		//
-		//terminal BINARY_OPERATOR: 
-		//	'+' | '-' | '*' | '/' | '%' | '==' | '!='| '===' | '!==' | '=?=' | '!?=' | '&&' | '||' | '**' 
-		//	| '<' | '<=' | '>' | '>=' | '&' | '|' | '^' | '^~' | '~^' | '>>' | '<<' | '>>>' | '<<<' 
-		//;
-		//
-		//terminal INC_OR_DEC_OPERATOR:
-		//	'++' | '--'
-		//;
-		// 
-		//terminal UNARY_MODULE_PATH_OPERATOR: 
-		//	'!' | '~' | '&' | '~&' | '|' | '~|' | '^' | '~^' | '^~'
-		//; 
-		//
-		//terminal BINARY_MODULE_PATH_OPERATOR: 
-		//	'==' | '!=' | '&&' | '||' | '&' | '|' | '^' | '^~' | '~^'
-		//; 
-		//
-		//terminal CMOS_SWITCHTYPE: 
-		//	'cmos' | 'rcmos'
-		//; 
-		//
-		//terminal ENABLE_GATETYPE: 
-		//	'bufif0' | 'bufif1' | 'notif0' | 'notif1'
-		//; 
-		//
-		//terminal MOS_SWITCHTYPE: 
-		//	'nmos' | 'pmos' | 'rnmos' | 'rpmos'
-		//; 
-		//
-		//terminal N_INPUT_GATETYPE: 
-		//	'and' | 'nand' | 'or' | 'nor' | 'xor' | 'xnor'
-		//; 
-		//
-		//terminal N_OUTPUT_GATETYPE: 
-		//	'buf' | 'not'
-		//; 
-		//
-		//terminal PASS_EN_SWITCHTYPE: 
-		//	'tranif0' | 'tranif1' | 'rtranif1' | 'rtranif0'
-		//; 
-		//
-		//terminal PASS_SWITCHTYPE: 
-		//	'tran' | 'rtran'
-		//;
-		// * / PORT_DIRECTION:
+		//PORT_DIRECTION:
 		//	"input" | "output" | "inout" | "ref";
 		public ParserRule getRule() { return rule; }
 
@@ -355,17 +852,84 @@ public class SystemVerilogGrammarAccess extends AbstractGrammarElementFinder {
 		//"ref"
 		public Keyword getRefKeyword_3() { return cRefKeyword_3; }
 	}
+
+	public class NUMBERElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NUMBER");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cBINARY_NUMBERTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cOCTAL_NUMBERTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cHEX_NUMBERTerminalRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cDECIMAL_NUMBERTerminalRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		
+		//NUMBER:
+		//	BINARY_NUMBER | OCTAL_NUMBER | HEX_NUMBER | DECIMAL_NUMBER;
+		public ParserRule getRule() { return rule; }
+
+		//BINARY_NUMBER | OCTAL_NUMBER | HEX_NUMBER | DECIMAL_NUMBER
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//BINARY_NUMBER
+		public RuleCall getBINARY_NUMBERTerminalRuleCall_0() { return cBINARY_NUMBERTerminalRuleCall_0; }
+
+		//OCTAL_NUMBER
+		public RuleCall getOCTAL_NUMBERTerminalRuleCall_1() { return cOCTAL_NUMBERTerminalRuleCall_1; }
+
+		//HEX_NUMBER
+		public RuleCall getHEX_NUMBERTerminalRuleCall_2() { return cHEX_NUMBERTerminalRuleCall_2; }
+
+		//DECIMAL_NUMBER
+		public RuleCall getDECIMAL_NUMBERTerminalRuleCall_3() { return cDECIMAL_NUMBERTerminalRuleCall_3; }
+	}
 	
 	
 	private ModuleElements pModule;
-	private Module_itemElements pModule_item;
 	private ParameterElements pParameter;
 	private PortElements pPort;
+	private MODULE_ITEMElements pMODULE_ITEM;
+	private NON_PORT_MODULE_ITEMElements pNON_PORT_MODULE_ITEM;
+	private MODULE_OR_GENERATE_ITEMElements pMODULE_OR_GENERATE_ITEM;
+	private MODULE_COMMON_ITEMElements pMODULE_COMMON_ITEM;
+	private CONTINUOUS_ASSIGNElements pCONTINUOUS_ASSIGN;
+	private LIST_OF_NET_ASSIGNMENTSElements pLIST_OF_NET_ASSIGNMENTS;
+	private NET_ASSIGNMENTElements pNET_ASSIGNMENT;
+	private NET_LVALUEElements pNET_LVALUE;
+	private PS_OR_HIERARCHICAL_NET_IDENTIFIERElements pPS_OR_HIERARCHICAL_NET_IDENTIFIER;
+	private NET_IDENTIFIERElements pNET_IDENTIFIER;
+	private SIMPLE_IDENTIFIERElements pSIMPLE_IDENTIFIER;
+	private MODULE_OR_GENERATE_ITEM_DECLARATIONElements pMODULE_OR_GENERATE_ITEM_DECLARATION;
+	private PACKAGE_OR_GENERATE_ITEM_DECLARATIONElements pPACKAGE_OR_GENERATE_ITEM_DECLARATION;
+	private NET_DECLARATIONElements pNET_DECLARATION;
+	private LIST_OF_NET_DECL_ASSIGNMENTSElements pLIST_OF_NET_DECL_ASSIGNMENTS;
+	private NET_DECL_ASSIGNMENTElements pNET_DECL_ASSIGNMENT;
+	private UNPACKED_DIMENSIONSElements pUNPACKED_DIMENSIONS;
+	private NET_TYPE_OR_TRIREGElements pNET_TYPE_OR_TRIREG;
+	private NET_TYPEElements pNET_TYPE;
+	private DATA_DECLARATIONElements pDATA_DECLARATION;
+	private LIFETIMEElements pLIFETIME;
 	private VARIABLE_DECLARATIONElements pVARIABLE_DECLARATION;
+	private LIST_OF_VARIABLE_DECL_ASSIGNMENTSElements pLIST_OF_VARIABLE_DECL_ASSIGNMENTS;
+	private VARIABLE_DECL_ASSIGNMENTElements pVARIABLE_DECL_ASSIGNMENT;
 	private DATA_TYPEElements pDATA_TYPE;
 	private INTEGER_VECTOR_TYPEElements pINTEGER_VECTOR_TYPE;
 	private MODULE_KEYWORDElements pMODULE_KEYWORD;
 	private PORT_DIRECTIONElements pPORT_DIRECTION;
+	private NUMBERElements pNUMBER;
+	private TerminalRule tBINARY_NUMBER;
+	private TerminalRule tOCTAL_NUMBER;
+	private TerminalRule tHEX_NUMBER;
+	private TerminalRule tDECIMAL_NUMBER;
+	private TerminalRule tBINARY_BASE;
+	private TerminalRule tDECIMAL_BASE;
+	private TerminalRule tOCTAL_BASE;
+	private TerminalRule tHEX_BASE;
+	private TerminalRule tX_DIGIT;
+	private TerminalRule tZ_DIGIT;
+	private TerminalRule tBINARY_DIGIT;
+	private TerminalRule tOCTAL_DIGIT;
+	private TerminalRule tHEX_DIGIT;
+	private TerminalRule tSTRENGTH0;
+	private TerminalRule tSTRENGTH1;
+	private TerminalRule tDRIVE_STRENGTH;
 	
 	private final GrammarProvider grammarProvider;
 
@@ -390,23 +954,13 @@ public class SystemVerilogGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Module:
 	//	MODULE_KEYWORD name=ID ("#(" parameters+=Parameter ("," parameters+=Parameter)* ")")? "(" (ports+=Port (","
-	//	ports+=Port)*)? ")" ";" module_items+=Module_item* "endmodule";
+	//	ports+=Port)*)? ")" ";" module_items+=MODULE_ITEM* "endmodule";
 	public ModuleElements getModuleAccess() {
 		return (pModule != null) ? pModule : (pModule = new ModuleElements());
 	}
 	
 	public ParserRule getModuleRule() {
 		return getModuleAccess().getRule();
-	}
-
-	//Module_item:
-	//	VARIABLE_DECLARATION;
-	public Module_itemElements getModule_itemAccess() {
-		return (pModule_item != null) ? pModule_item : (pModule_item = new Module_itemElements());
-	}
-	
-	public ParserRule getModule_itemRule() {
-		return getModule_itemAccess().getRule();
 	}
 
 	//Parameter:
@@ -431,14 +985,248 @@ public class SystemVerilogGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// *
 	// * Keywords
-	// * / VARIABLE_DECLARATION:
-	//	DATA_TYPE name=ID ";";
+	// * / MODULE_ITEM:
+	//	NON_PORT_MODULE_ITEM;
+	public MODULE_ITEMElements getMODULE_ITEMAccess() {
+		return (pMODULE_ITEM != null) ? pMODULE_ITEM : (pMODULE_ITEM = new MODULE_ITEMElements());
+	}
+	
+	public ParserRule getMODULE_ITEMRule() {
+		return getMODULE_ITEMAccess().getRule();
+	}
+
+	//NON_PORT_MODULE_ITEM:
+	//	MODULE_OR_GENERATE_ITEM;
+	public NON_PORT_MODULE_ITEMElements getNON_PORT_MODULE_ITEMAccess() {
+		return (pNON_PORT_MODULE_ITEM != null) ? pNON_PORT_MODULE_ITEM : (pNON_PORT_MODULE_ITEM = new NON_PORT_MODULE_ITEMElements());
+	}
+	
+	public ParserRule getNON_PORT_MODULE_ITEMRule() {
+		return getNON_PORT_MODULE_ITEMAccess().getRule();
+	}
+
+	//MODULE_OR_GENERATE_ITEM:
+	//	MODULE_COMMON_ITEM;
+	public MODULE_OR_GENERATE_ITEMElements getMODULE_OR_GENERATE_ITEMAccess() {
+		return (pMODULE_OR_GENERATE_ITEM != null) ? pMODULE_OR_GENERATE_ITEM : (pMODULE_OR_GENERATE_ITEM = new MODULE_OR_GENERATE_ITEMElements());
+	}
+	
+	public ParserRule getMODULE_OR_GENERATE_ITEMRule() {
+		return getMODULE_OR_GENERATE_ITEMAccess().getRule();
+	}
+
+	//MODULE_COMMON_ITEM:
+	//	MODULE_OR_GENERATE_ITEM_DECLARATION | CONTINUOUS_ASSIGN;
+	public MODULE_COMMON_ITEMElements getMODULE_COMMON_ITEMAccess() {
+		return (pMODULE_COMMON_ITEM != null) ? pMODULE_COMMON_ITEM : (pMODULE_COMMON_ITEM = new MODULE_COMMON_ITEMElements());
+	}
+	
+	public ParserRule getMODULE_COMMON_ITEMRule() {
+		return getMODULE_COMMON_ITEMAccess().getRule();
+	}
+
+	////TODO: add DELAY3
+	////| 'assign' (DELAY_CONTROL)? LIST_OF_VARIABLE_ASSIGNMENTS ';'
+	//CONTINUOUS_ASSIGN:
+	//	"assign" DRIVE_STRENGTH? LIST_OF_NET_ASSIGNMENTS ";";
+	public CONTINUOUS_ASSIGNElements getCONTINUOUS_ASSIGNAccess() {
+		return (pCONTINUOUS_ASSIGN != null) ? pCONTINUOUS_ASSIGN : (pCONTINUOUS_ASSIGN = new CONTINUOUS_ASSIGNElements());
+	}
+	
+	public ParserRule getCONTINUOUS_ASSIGNRule() {
+		return getCONTINUOUS_ASSIGNAccess().getRule();
+	}
+
+	//LIST_OF_NET_ASSIGNMENTS:
+	//	assignments+=NET_ASSIGNMENT ("," assignments+=NET_ASSIGNMENT)*;
+	public LIST_OF_NET_ASSIGNMENTSElements getLIST_OF_NET_ASSIGNMENTSAccess() {
+		return (pLIST_OF_NET_ASSIGNMENTS != null) ? pLIST_OF_NET_ASSIGNMENTS : (pLIST_OF_NET_ASSIGNMENTS = new LIST_OF_NET_ASSIGNMENTSElements());
+	}
+	
+	public ParserRule getLIST_OF_NET_ASSIGNMENTSRule() {
+		return getLIST_OF_NET_ASSIGNMENTSAccess().getRule();
+	}
+
+	////TODO: flesh out EXPRESSION
+	//NET_ASSIGNMENT:
+	//	NET_LVALUE "=" NUMBER;
+	public NET_ASSIGNMENTElements getNET_ASSIGNMENTAccess() {
+		return (pNET_ASSIGNMENT != null) ? pNET_ASSIGNMENT : (pNET_ASSIGNMENT = new NET_ASSIGNMENTElements());
+	}
+	
+	public ParserRule getNET_ASSIGNMENTRule() {
+		return getNET_ASSIGNMENTAccess().getRule();
+	}
+
+	//NET_LVALUE:
+	//	PS_OR_HIERARCHICAL_NET_IDENTIFIER;
+	public NET_LVALUEElements getNET_LVALUEAccess() {
+		return (pNET_LVALUE != null) ? pNET_LVALUE : (pNET_LVALUE = new NET_LVALUEElements());
+	}
+	
+	public ParserRule getNET_LVALUERule() {
+		return getNET_LVALUEAccess().getRule();
+	}
+
+	//PS_OR_HIERARCHICAL_NET_IDENTIFIER:
+	//	NET_IDENTIFIER;
+	public PS_OR_HIERARCHICAL_NET_IDENTIFIERElements getPS_OR_HIERARCHICAL_NET_IDENTIFIERAccess() {
+		return (pPS_OR_HIERARCHICAL_NET_IDENTIFIER != null) ? pPS_OR_HIERARCHICAL_NET_IDENTIFIER : (pPS_OR_HIERARCHICAL_NET_IDENTIFIER = new PS_OR_HIERARCHICAL_NET_IDENTIFIERElements());
+	}
+	
+	public ParserRule getPS_OR_HIERARCHICAL_NET_IDENTIFIERRule() {
+		return getPS_OR_HIERARCHICAL_NET_IDENTIFIERAccess().getRule();
+	}
+
+	//NET_IDENTIFIER:
+	//	SIMPLE_IDENTIFIER;
+	public NET_IDENTIFIERElements getNET_IDENTIFIERAccess() {
+		return (pNET_IDENTIFIER != null) ? pNET_IDENTIFIER : (pNET_IDENTIFIER = new NET_IDENTIFIERElements());
+	}
+	
+	public ParserRule getNET_IDENTIFIERRule() {
+		return getNET_IDENTIFIERAccess().getRule();
+	}
+
+	////TODO: finis expanding this, just going to use string now
+	//SIMPLE_IDENTIFIER:
+	//	ID;
+	public SIMPLE_IDENTIFIERElements getSIMPLE_IDENTIFIERAccess() {
+		return (pSIMPLE_IDENTIFIER != null) ? pSIMPLE_IDENTIFIER : (pSIMPLE_IDENTIFIER = new SIMPLE_IDENTIFIERElements());
+	}
+	
+	public ParserRule getSIMPLE_IDENTIFIERRule() {
+		return getSIMPLE_IDENTIFIERAccess().getRule();
+	}
+
+	//MODULE_OR_GENERATE_ITEM_DECLARATION:
+	//	PACKAGE_OR_GENERATE_ITEM_DECLARATION;
+	public MODULE_OR_GENERATE_ITEM_DECLARATIONElements getMODULE_OR_GENERATE_ITEM_DECLARATIONAccess() {
+		return (pMODULE_OR_GENERATE_ITEM_DECLARATION != null) ? pMODULE_OR_GENERATE_ITEM_DECLARATION : (pMODULE_OR_GENERATE_ITEM_DECLARATION = new MODULE_OR_GENERATE_ITEM_DECLARATIONElements());
+	}
+	
+	public ParserRule getMODULE_OR_GENERATE_ITEM_DECLARATIONRule() {
+		return getMODULE_OR_GENERATE_ITEM_DECLARATIONAccess().getRule();
+	}
+
+	//PACKAGE_OR_GENERATE_ITEM_DECLARATION:
+	//	NET_DECLARATION | DATA_DECLARATION;
+	public PACKAGE_OR_GENERATE_ITEM_DECLARATIONElements getPACKAGE_OR_GENERATE_ITEM_DECLARATIONAccess() {
+		return (pPACKAGE_OR_GENERATE_ITEM_DECLARATION != null) ? pPACKAGE_OR_GENERATE_ITEM_DECLARATION : (pPACKAGE_OR_GENERATE_ITEM_DECLARATION = new PACKAGE_OR_GENERATE_ITEM_DECLARATIONElements());
+	}
+	
+	public ParserRule getPACKAGE_OR_GENERATE_ITEM_DECLARATIONRule() {
+		return getPACKAGE_OR_GENERATE_ITEM_DECLARATIONAccess().getRule();
+	}
+
+	//NET_DECLARATION:
+	//	NET_TYPE_OR_TRIREG LIST_OF_NET_DECL_ASSIGNMENTS ";";
+	public NET_DECLARATIONElements getNET_DECLARATIONAccess() {
+		return (pNET_DECLARATION != null) ? pNET_DECLARATION : (pNET_DECLARATION = new NET_DECLARATIONElements());
+	}
+	
+	public ParserRule getNET_DECLARATIONRule() {
+		return getNET_DECLARATIONAccess().getRule();
+	}
+
+	//LIST_OF_NET_DECL_ASSIGNMENTS:
+	//	nets+=NET_DECL_ASSIGNMENT ("," nets+=NET_DECL_ASSIGNMENT)*;
+	public LIST_OF_NET_DECL_ASSIGNMENTSElements getLIST_OF_NET_DECL_ASSIGNMENTSAccess() {
+		return (pLIST_OF_NET_DECL_ASSIGNMENTS != null) ? pLIST_OF_NET_DECL_ASSIGNMENTS : (pLIST_OF_NET_DECL_ASSIGNMENTS = new LIST_OF_NET_DECL_ASSIGNMENTSElements());
+	}
+	
+	public ParserRule getLIST_OF_NET_DECL_ASSIGNMENTSRule() {
+		return getLIST_OF_NET_DECL_ASSIGNMENTSAccess().getRule();
+	}
+
+	//NET_DECL_ASSIGNMENT:
+	//	name=ID dimensions+=UNPACKED_DIMENSIONS* ("=" value=NUMBER)?;
+	public NET_DECL_ASSIGNMENTElements getNET_DECL_ASSIGNMENTAccess() {
+		return (pNET_DECL_ASSIGNMENT != null) ? pNET_DECL_ASSIGNMENT : (pNET_DECL_ASSIGNMENT = new NET_DECL_ASSIGNMENTElements());
+	}
+	
+	public ParserRule getNET_DECL_ASSIGNMENTRule() {
+		return getNET_DECL_ASSIGNMENTAccess().getRule();
+	}
+
+	//UNPACKED_DIMENSIONS:
+	//	"[" left_bound+=INT ":" right_bound+=INT "]";
+	public UNPACKED_DIMENSIONSElements getUNPACKED_DIMENSIONSAccess() {
+		return (pUNPACKED_DIMENSIONS != null) ? pUNPACKED_DIMENSIONS : (pUNPACKED_DIMENSIONS = new UNPACKED_DIMENSIONSElements());
+	}
+	
+	public ParserRule getUNPACKED_DIMENSIONSRule() {
+		return getUNPACKED_DIMENSIONSAccess().getRule();
+	}
+
+	//NET_TYPE_OR_TRIREG:
+	//	NET_TYPE | "trireg";
+	public NET_TYPE_OR_TRIREGElements getNET_TYPE_OR_TRIREGAccess() {
+		return (pNET_TYPE_OR_TRIREG != null) ? pNET_TYPE_OR_TRIREG : (pNET_TYPE_OR_TRIREG = new NET_TYPE_OR_TRIREGElements());
+	}
+	
+	public ParserRule getNET_TYPE_OR_TRIREGRule() {
+		return getNET_TYPE_OR_TRIREGAccess().getRule();
+	}
+
+	//NET_TYPE:
+	//	"supply0" | "supply1" | "tri" | "triand" | "trior" | "tri0" | "tri1" | "wire" | "wand" | "wor";
+	public NET_TYPEElements getNET_TYPEAccess() {
+		return (pNET_TYPE != null) ? pNET_TYPE : (pNET_TYPE = new NET_TYPEElements());
+	}
+	
+	public ParserRule getNET_TYPERule() {
+		return getNET_TYPEAccess().getRule();
+	}
+
+	//DATA_DECLARATION:
+	//	"const"? LIFETIME? VARIABLE_DECLARATION;
+	public DATA_DECLARATIONElements getDATA_DECLARATIONAccess() {
+		return (pDATA_DECLARATION != null) ? pDATA_DECLARATION : (pDATA_DECLARATION = new DATA_DECLARATIONElements());
+	}
+	
+	public ParserRule getDATA_DECLARATIONRule() {
+		return getDATA_DECLARATIONAccess().getRule();
+	}
+
+	//LIFETIME:
+	//	"static" | "automatic";
+	public LIFETIMEElements getLIFETIMEAccess() {
+		return (pLIFETIME != null) ? pLIFETIME : (pLIFETIME = new LIFETIMEElements());
+	}
+	
+	public ParserRule getLIFETIMERule() {
+		return getLIFETIMEAccess().getRule();
+	}
+
+	//VARIABLE_DECLARATION:
+	//	DATA_TYPE LIST_OF_VARIABLE_DECL_ASSIGNMENTS ";";
 	public VARIABLE_DECLARATIONElements getVARIABLE_DECLARATIONAccess() {
 		return (pVARIABLE_DECLARATION != null) ? pVARIABLE_DECLARATION : (pVARIABLE_DECLARATION = new VARIABLE_DECLARATIONElements());
 	}
 	
 	public ParserRule getVARIABLE_DECLARATIONRule() {
 		return getVARIABLE_DECLARATIONAccess().getRule();
+	}
+
+	//LIST_OF_VARIABLE_DECL_ASSIGNMENTS:
+	//	variables+=VARIABLE_DECL_ASSIGNMENT ("," variables+=VARIABLE_DECL_ASSIGNMENT)*;
+	public LIST_OF_VARIABLE_DECL_ASSIGNMENTSElements getLIST_OF_VARIABLE_DECL_ASSIGNMENTSAccess() {
+		return (pLIST_OF_VARIABLE_DECL_ASSIGNMENTS != null) ? pLIST_OF_VARIABLE_DECL_ASSIGNMENTS : (pLIST_OF_VARIABLE_DECL_ASSIGNMENTS = new LIST_OF_VARIABLE_DECL_ASSIGNMENTSElements());
+	}
+	
+	public ParserRule getLIST_OF_VARIABLE_DECL_ASSIGNMENTSRule() {
+		return getLIST_OF_VARIABLE_DECL_ASSIGNMENTSAccess().getRule();
+	}
+
+	//VARIABLE_DECL_ASSIGNMENT:
+	//	name=ID dimensions+=UNPACKED_DIMENSIONS* ("=" value=NUMBER)?;
+	public VARIABLE_DECL_ASSIGNMENTElements getVARIABLE_DECL_ASSIGNMENTAccess() {
+		return (pVARIABLE_DECL_ASSIGNMENT != null) ? pVARIABLE_DECL_ASSIGNMENT : (pVARIABLE_DECL_ASSIGNMENT = new VARIABLE_DECL_ASSIGNMENTElements());
+	}
+	
+	public ParserRule getVARIABLE_DECL_ASSIGNMENTRule() {
+		return getVARIABLE_DECL_ASSIGNMENTAccess().getRule();
 	}
 
 	//DATA_TYPE:
@@ -471,9 +1259,119 @@ public class SystemVerilogGrammarAccess extends AbstractGrammarElementFinder {
 		return getMODULE_KEYWORDAccess().getRule();
 	}
 
+	//PORT_DIRECTION:
+	//	"input" | "output" | "inout" | "ref";
+	public PORT_DIRECTIONElements getPORT_DIRECTIONAccess() {
+		return (pPORT_DIRECTION != null) ? pPORT_DIRECTION : (pPORT_DIRECTION = new PORT_DIRECTIONElements());
+	}
+	
+	public ParserRule getPORT_DIRECTIONRule() {
+		return getPORT_DIRECTIONAccess().getRule();
+	}
+
+	//NUMBER:
+	//	BINARY_NUMBER | OCTAL_NUMBER | HEX_NUMBER | DECIMAL_NUMBER;
+	public NUMBERElements getNUMBERAccess() {
+		return (pNUMBER != null) ? pNUMBER : (pNUMBER = new NUMBERElements());
+	}
+	
+	public ParserRule getNUMBERRule() {
+		return getNUMBERAccess().getRule();
+	}
+
 	/// *
-	// * Some added terminals, should add this to a separate file maybe?
-	// * / / *
+	// * Number terminals
+	// * / terminal BINARY_NUMBER:
+	//	INT BINARY_BASE BINARY_DIGIT+;
+	public TerminalRule getBINARY_NUMBERRule() {
+		return (tBINARY_NUMBER != null) ? tBINARY_NUMBER : (tBINARY_NUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "BINARY_NUMBER"));
+	} 
+
+	//terminal OCTAL_NUMBER:
+	//	INT OCTAL_BASE OCTAL_DIGIT+;
+	public TerminalRule getOCTAL_NUMBERRule() {
+		return (tOCTAL_NUMBER != null) ? tOCTAL_NUMBER : (tOCTAL_NUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OCTAL_NUMBER"));
+	} 
+
+	//terminal HEX_NUMBER:
+	//	INT HEX_BASE HEX_DIGIT+;
+	public TerminalRule getHEX_NUMBERRule() {
+		return (tHEX_NUMBER != null) ? tHEX_NUMBER : (tHEX_NUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "HEX_NUMBER"));
+	} 
+
+	//terminal DECIMAL_NUMBER:
+	//	INT DECIMAL_BASE INT;
+	public TerminalRule getDECIMAL_NUMBERRule() {
+		return (tDECIMAL_NUMBER != null) ? tDECIMAL_NUMBER : (tDECIMAL_NUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DECIMAL_NUMBER"));
+	} 
+
+	//terminal BINARY_BASE:
+	//	"\'" ("s" | "S")? "b" | "\'" ("s" | "S")? "B";
+	public TerminalRule getBINARY_BASERule() {
+		return (tBINARY_BASE != null) ? tBINARY_BASE : (tBINARY_BASE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "BINARY_BASE"));
+	} 
+
+	//terminal DECIMAL_BASE:
+	//	"\'" ("s" | "S")? "d" | "\'" ("s" | "S")? "D";
+	public TerminalRule getDECIMAL_BASERule() {
+		return (tDECIMAL_BASE != null) ? tDECIMAL_BASE : (tDECIMAL_BASE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DECIMAL_BASE"));
+	} 
+
+	//terminal OCTAL_BASE:
+	//	"\'" ("s" | "S")? "o" | "\'" ("s" | "S")? "O";
+	public TerminalRule getOCTAL_BASERule() {
+		return (tOCTAL_BASE != null) ? tOCTAL_BASE : (tOCTAL_BASE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OCTAL_BASE"));
+	} 
+
+	//terminal HEX_BASE:
+	//	"\'" ("s" | "S")? "h" | "\'" ("s" | "S")? "H";
+	public TerminalRule getHEX_BASERule() {
+		return (tHEX_BASE != null) ? tHEX_BASE : (tHEX_BASE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "HEX_BASE"));
+	} 
+
+	//terminal X_DIGIT:
+	//	"x" | "X";
+	public TerminalRule getX_DIGITRule() {
+		return (tX_DIGIT != null) ? tX_DIGIT : (tX_DIGIT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "X_DIGIT"));
+	} 
+
+	//terminal Z_DIGIT:
+	//	"z" | "Z" | "?";
+	public TerminalRule getZ_DIGITRule() {
+		return (tZ_DIGIT != null) ? tZ_DIGIT : (tZ_DIGIT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "Z_DIGIT"));
+	} 
+
+	//terminal BINARY_DIGIT:
+	//	X_DIGIT | Z_DIGIT | "1" | "0";
+	public TerminalRule getBINARY_DIGITRule() {
+		return (tBINARY_DIGIT != null) ? tBINARY_DIGIT : (tBINARY_DIGIT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "BINARY_DIGIT"));
+	} 
+
+	//terminal OCTAL_DIGIT:
+	//	BINARY_DIGIT | "2" | "3" | "4" | "5" | "6" | "7";
+	public TerminalRule getOCTAL_DIGITRule() {
+		return (tOCTAL_DIGIT != null) ? tOCTAL_DIGIT : (tOCTAL_DIGIT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OCTAL_DIGIT"));
+	} 
+
+	//terminal HEX_DIGIT:
+	//	OCTAL_DIGIT | "8" | "9" | "a" | "b" | "c" | "d" | "e" | "f" | "A" | "B" | "C" | "D" | "E" | "F";
+	public TerminalRule getHEX_DIGITRule() {
+		return (tHEX_DIGIT != null) ? tHEX_DIGIT : (tHEX_DIGIT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "HEX_DIGIT"));
+	} 
+
+	//terminal STRENGTH0:
+	//	"supply0" | "strong0" | "pull0" | "weak0";
+	public TerminalRule getSTRENGTH0Rule() {
+		return (tSTRENGTH0 != null) ? tSTRENGTH0 : (tSTRENGTH0 = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRENGTH0"));
+	} 
+
+	//terminal STRENGTH1:
+	//	"supply1" | "strong1" | "pull1" | "weak1";
+	public TerminalRule getSTRENGTH1Rule() {
+		return (tSTRENGTH1 != null) ? tSTRENGTH1 : (tSTRENGTH1 = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRENGTH1"));
+	} 
+
+	/// *
 	//terminal ASSIGNMENT_OPERATOR: 
 	//	'=' | '+=' | '-=' | '*=' | '/=' | '%=' | '&=' | '|=' | '^=' | '<<=' | '>>=' | '<<<=' | '>>>='
 	//;
@@ -526,15 +1424,12 @@ public class SystemVerilogGrammarAccess extends AbstractGrammarElementFinder {
 	//terminal PASS_SWITCHTYPE: 
 	//	'tran' | 'rtran'
 	//;
-	// * / PORT_DIRECTION:
-	//	"input" | "output" | "inout" | "ref";
-	public PORT_DIRECTIONElements getPORT_DIRECTIONAccess() {
-		return (pPORT_DIRECTION != null) ? pPORT_DIRECTION : (pPORT_DIRECTION = new PORT_DIRECTIONElements());
-	}
-	
-	public ParserRule getPORT_DIRECTIONRule() {
-		return getPORT_DIRECTIONAccess().getRule();
-	}
+	// * / terminal DRIVE_STRENGTH:
+	//	"(" STRENGTH0 "," STRENGTH1 ")" | "(" STRENGTH1 "," STRENGTH0 ")" | "(" STRENGTH0 "," "highz1" ")" | "(" STRENGTH1 ","
+	//	"highz0" ")" | "(" "highz0" "," STRENGTH1 ")" | "(" "highz1" "," STRENGTH0 ")";
+	public TerminalRule getDRIVE_STRENGTHRule() {
+		return (tDRIVE_STRENGTH != null) ? tDRIVE_STRENGTH : (tDRIVE_STRENGTH = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DRIVE_STRENGTH"));
+	} 
 
 	//terminal ID:
 	//	"^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;

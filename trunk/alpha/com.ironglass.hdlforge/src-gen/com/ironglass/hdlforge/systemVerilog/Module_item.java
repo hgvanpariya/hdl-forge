@@ -10,14 +10,14 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Module item</b></em>'.
+ * A representation of the model object '<em><b>MODULE ITEM</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see com.ironglass.hdlforge.systemVerilog.SystemVerilogPackage#getModule_item()
+ * @see com.ironglass.hdlforge.systemVerilog.SystemVerilogPackage#getMODULE_ITEM()
  * @model
  * @generated
  */
-public interface Module_item extends EObject
+public interface MODULE_ITEM extends EObject
 {
-} // Module_item
+} // MODULE_ITEM

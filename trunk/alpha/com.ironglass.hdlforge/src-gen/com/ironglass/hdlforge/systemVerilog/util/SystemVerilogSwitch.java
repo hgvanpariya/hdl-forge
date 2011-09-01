@@ -83,13 +83,6 @@ public class SystemVerilogSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case SystemVerilogPackage.MODULE_ITEM:
-      {
-        Module_item module_item = (Module_item)theEObject;
-        T result = caseModule_item(module_item);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case SystemVerilogPackage.PARAMETER:
       {
         Parameter parameter = (Parameter)theEObject;
@@ -104,11 +97,173 @@ public class SystemVerilogSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SystemVerilogPackage.MODULE_ITEM:
+      {
+        MODULE_ITEM modulE_ITEM = (MODULE_ITEM)theEObject;
+        T result = caseMODULE_ITEM(modulE_ITEM);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SystemVerilogPackage.NON_PORT_MODULE_ITEM:
+      {
+        NON_PORT_MODULE_ITEM noN_PORT_MODULE_ITEM = (NON_PORT_MODULE_ITEM)theEObject;
+        T result = caseNON_PORT_MODULE_ITEM(noN_PORT_MODULE_ITEM);
+        if (result == null) result = caseMODULE_ITEM(noN_PORT_MODULE_ITEM);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SystemVerilogPackage.MODULE_OR_GENERATE_ITEM:
+      {
+        MODULE_OR_GENERATE_ITEM modulE_OR_GENERATE_ITEM = (MODULE_OR_GENERATE_ITEM)theEObject;
+        T result = caseMODULE_OR_GENERATE_ITEM(modulE_OR_GENERATE_ITEM);
+        if (result == null) result = caseNON_PORT_MODULE_ITEM(modulE_OR_GENERATE_ITEM);
+        if (result == null) result = caseMODULE_ITEM(modulE_OR_GENERATE_ITEM);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SystemVerilogPackage.MODULE_COMMON_ITEM:
+      {
+        MODULE_COMMON_ITEM modulE_COMMON_ITEM = (MODULE_COMMON_ITEM)theEObject;
+        T result = caseMODULE_COMMON_ITEM(modulE_COMMON_ITEM);
+        if (result == null) result = caseMODULE_OR_GENERATE_ITEM(modulE_COMMON_ITEM);
+        if (result == null) result = caseNON_PORT_MODULE_ITEM(modulE_COMMON_ITEM);
+        if (result == null) result = caseMODULE_ITEM(modulE_COMMON_ITEM);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SystemVerilogPackage.CONTINUOUS_ASSIGN:
+      {
+        CONTINUOUS_ASSIGN continuouS_ASSIGN = (CONTINUOUS_ASSIGN)theEObject;
+        T result = caseCONTINUOUS_ASSIGN(continuouS_ASSIGN);
+        if (result == null) result = caseMODULE_COMMON_ITEM(continuouS_ASSIGN);
+        if (result == null) result = caseMODULE_OR_GENERATE_ITEM(continuouS_ASSIGN);
+        if (result == null) result = caseNON_PORT_MODULE_ITEM(continuouS_ASSIGN);
+        if (result == null) result = caseMODULE_ITEM(continuouS_ASSIGN);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SystemVerilogPackage.LIST_OF_NET_ASSIGNMENTS:
+      {
+        LIST_OF_NET_ASSIGNMENTS lisT_OF_NET_ASSIGNMENTS = (LIST_OF_NET_ASSIGNMENTS)theEObject;
+        T result = caseLIST_OF_NET_ASSIGNMENTS(lisT_OF_NET_ASSIGNMENTS);
+        if (result == null) result = caseCONTINUOUS_ASSIGN(lisT_OF_NET_ASSIGNMENTS);
+        if (result == null) result = caseMODULE_COMMON_ITEM(lisT_OF_NET_ASSIGNMENTS);
+        if (result == null) result = caseMODULE_OR_GENERATE_ITEM(lisT_OF_NET_ASSIGNMENTS);
+        if (result == null) result = caseNON_PORT_MODULE_ITEM(lisT_OF_NET_ASSIGNMENTS);
+        if (result == null) result = caseMODULE_ITEM(lisT_OF_NET_ASSIGNMENTS);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SystemVerilogPackage.MODULE_OR_GENERATE_ITEM_DECLARATION:
+      {
+        MODULE_OR_GENERATE_ITEM_DECLARATION modulE_OR_GENERATE_ITEM_DECLARATION = (MODULE_OR_GENERATE_ITEM_DECLARATION)theEObject;
+        T result = caseMODULE_OR_GENERATE_ITEM_DECLARATION(modulE_OR_GENERATE_ITEM_DECLARATION);
+        if (result == null) result = caseMODULE_COMMON_ITEM(modulE_OR_GENERATE_ITEM_DECLARATION);
+        if (result == null) result = caseMODULE_OR_GENERATE_ITEM(modulE_OR_GENERATE_ITEM_DECLARATION);
+        if (result == null) result = caseNON_PORT_MODULE_ITEM(modulE_OR_GENERATE_ITEM_DECLARATION);
+        if (result == null) result = caseMODULE_ITEM(modulE_OR_GENERATE_ITEM_DECLARATION);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SystemVerilogPackage.PACKAGE_OR_GENERATE_ITEM_DECLARATION:
+      {
+        PACKAGE_OR_GENERATE_ITEM_DECLARATION packagE_OR_GENERATE_ITEM_DECLARATION = (PACKAGE_OR_GENERATE_ITEM_DECLARATION)theEObject;
+        T result = casePACKAGE_OR_GENERATE_ITEM_DECLARATION(packagE_OR_GENERATE_ITEM_DECLARATION);
+        if (result == null) result = caseMODULE_OR_GENERATE_ITEM_DECLARATION(packagE_OR_GENERATE_ITEM_DECLARATION);
+        if (result == null) result = caseMODULE_COMMON_ITEM(packagE_OR_GENERATE_ITEM_DECLARATION);
+        if (result == null) result = caseMODULE_OR_GENERATE_ITEM(packagE_OR_GENERATE_ITEM_DECLARATION);
+        if (result == null) result = caseNON_PORT_MODULE_ITEM(packagE_OR_GENERATE_ITEM_DECLARATION);
+        if (result == null) result = caseMODULE_ITEM(packagE_OR_GENERATE_ITEM_DECLARATION);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SystemVerilogPackage.NET_DECLARATION:
+      {
+        NET_DECLARATION neT_DECLARATION = (NET_DECLARATION)theEObject;
+        T result = caseNET_DECLARATION(neT_DECLARATION);
+        if (result == null) result = casePACKAGE_OR_GENERATE_ITEM_DECLARATION(neT_DECLARATION);
+        if (result == null) result = caseMODULE_OR_GENERATE_ITEM_DECLARATION(neT_DECLARATION);
+        if (result == null) result = caseMODULE_COMMON_ITEM(neT_DECLARATION);
+        if (result == null) result = caseMODULE_OR_GENERATE_ITEM(neT_DECLARATION);
+        if (result == null) result = caseNON_PORT_MODULE_ITEM(neT_DECLARATION);
+        if (result == null) result = caseMODULE_ITEM(neT_DECLARATION);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SystemVerilogPackage.LIST_OF_NET_DECL_ASSIGNMENTS:
+      {
+        LIST_OF_NET_DECL_ASSIGNMENTS lisT_OF_NET_DECL_ASSIGNMENTS = (LIST_OF_NET_DECL_ASSIGNMENTS)theEObject;
+        T result = caseLIST_OF_NET_DECL_ASSIGNMENTS(lisT_OF_NET_DECL_ASSIGNMENTS);
+        if (result == null) result = caseNET_DECLARATION(lisT_OF_NET_DECL_ASSIGNMENTS);
+        if (result == null) result = casePACKAGE_OR_GENERATE_ITEM_DECLARATION(lisT_OF_NET_DECL_ASSIGNMENTS);
+        if (result == null) result = caseMODULE_OR_GENERATE_ITEM_DECLARATION(lisT_OF_NET_DECL_ASSIGNMENTS);
+        if (result == null) result = caseMODULE_COMMON_ITEM(lisT_OF_NET_DECL_ASSIGNMENTS);
+        if (result == null) result = caseMODULE_OR_GENERATE_ITEM(lisT_OF_NET_DECL_ASSIGNMENTS);
+        if (result == null) result = caseNON_PORT_MODULE_ITEM(lisT_OF_NET_DECL_ASSIGNMENTS);
+        if (result == null) result = caseMODULE_ITEM(lisT_OF_NET_DECL_ASSIGNMENTS);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SystemVerilogPackage.NET_DECL_ASSIGNMENT:
+      {
+        NET_DECL_ASSIGNMENT neT_DECL_ASSIGNMENT = (NET_DECL_ASSIGNMENT)theEObject;
+        T result = caseNET_DECL_ASSIGNMENT(neT_DECL_ASSIGNMENT);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SystemVerilogPackage.UNPACKED_DIMENSIONS:
+      {
+        UNPACKED_DIMENSIONS unpackeD_DIMENSIONS = (UNPACKED_DIMENSIONS)theEObject;
+        T result = caseUNPACKED_DIMENSIONS(unpackeD_DIMENSIONS);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SystemVerilogPackage.DATA_DECLARATION:
+      {
+        DATA_DECLARATION datA_DECLARATION = (DATA_DECLARATION)theEObject;
+        T result = caseDATA_DECLARATION(datA_DECLARATION);
+        if (result == null) result = casePACKAGE_OR_GENERATE_ITEM_DECLARATION(datA_DECLARATION);
+        if (result == null) result = caseMODULE_OR_GENERATE_ITEM_DECLARATION(datA_DECLARATION);
+        if (result == null) result = caseMODULE_COMMON_ITEM(datA_DECLARATION);
+        if (result == null) result = caseMODULE_OR_GENERATE_ITEM(datA_DECLARATION);
+        if (result == null) result = caseNON_PORT_MODULE_ITEM(datA_DECLARATION);
+        if (result == null) result = caseMODULE_ITEM(datA_DECLARATION);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case SystemVerilogPackage.VARIABLE_DECLARATION:
       {
         VARIABLE_DECLARATION variablE_DECLARATION = (VARIABLE_DECLARATION)theEObject;
         T result = caseVARIABLE_DECLARATION(variablE_DECLARATION);
-        if (result == null) result = caseModule_item(variablE_DECLARATION);
+        if (result == null) result = caseDATA_DECLARATION(variablE_DECLARATION);
+        if (result == null) result = casePACKAGE_OR_GENERATE_ITEM_DECLARATION(variablE_DECLARATION);
+        if (result == null) result = caseMODULE_OR_GENERATE_ITEM_DECLARATION(variablE_DECLARATION);
+        if (result == null) result = caseMODULE_COMMON_ITEM(variablE_DECLARATION);
+        if (result == null) result = caseMODULE_OR_GENERATE_ITEM(variablE_DECLARATION);
+        if (result == null) result = caseNON_PORT_MODULE_ITEM(variablE_DECLARATION);
+        if (result == null) result = caseMODULE_ITEM(variablE_DECLARATION);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SystemVerilogPackage.LIST_OF_VARIABLE_DECL_ASSIGNMENTS:
+      {
+        LIST_OF_VARIABLE_DECL_ASSIGNMENTS lisT_OF_VARIABLE_DECL_ASSIGNMENTS = (LIST_OF_VARIABLE_DECL_ASSIGNMENTS)theEObject;
+        T result = caseLIST_OF_VARIABLE_DECL_ASSIGNMENTS(lisT_OF_VARIABLE_DECL_ASSIGNMENTS);
+        if (result == null) result = caseVARIABLE_DECLARATION(lisT_OF_VARIABLE_DECL_ASSIGNMENTS);
+        if (result == null) result = caseDATA_DECLARATION(lisT_OF_VARIABLE_DECL_ASSIGNMENTS);
+        if (result == null) result = casePACKAGE_OR_GENERATE_ITEM_DECLARATION(lisT_OF_VARIABLE_DECL_ASSIGNMENTS);
+        if (result == null) result = caseMODULE_OR_GENERATE_ITEM_DECLARATION(lisT_OF_VARIABLE_DECL_ASSIGNMENTS);
+        if (result == null) result = caseMODULE_COMMON_ITEM(lisT_OF_VARIABLE_DECL_ASSIGNMENTS);
+        if (result == null) result = caseMODULE_OR_GENERATE_ITEM(lisT_OF_VARIABLE_DECL_ASSIGNMENTS);
+        if (result == null) result = caseNON_PORT_MODULE_ITEM(lisT_OF_VARIABLE_DECL_ASSIGNMENTS);
+        if (result == null) result = caseMODULE_ITEM(lisT_OF_VARIABLE_DECL_ASSIGNMENTS);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SystemVerilogPackage.VARIABLE_DECL_ASSIGNMENT:
+      {
+        VARIABLE_DECL_ASSIGNMENT variablE_DECL_ASSIGNMENT = (VARIABLE_DECL_ASSIGNMENT)theEObject;
+        T result = caseVARIABLE_DECL_ASSIGNMENT(variablE_DECL_ASSIGNMENT);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -128,22 +283,6 @@ public class SystemVerilogSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseModule(Module object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Module item</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Module item</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseModule_item(Module_item object)
   {
     return null;
   }
@@ -181,6 +320,214 @@ public class SystemVerilogSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>MODULE ITEM</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>MODULE ITEM</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMODULE_ITEM(MODULE_ITEM object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>NON PORT MODULE ITEM</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>NON PORT MODULE ITEM</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNON_PORT_MODULE_ITEM(NON_PORT_MODULE_ITEM object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>MODULE OR GENERATE ITEM</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>MODULE OR GENERATE ITEM</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMODULE_OR_GENERATE_ITEM(MODULE_OR_GENERATE_ITEM object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>MODULE COMMON ITEM</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>MODULE COMMON ITEM</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMODULE_COMMON_ITEM(MODULE_COMMON_ITEM object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>CONTINUOUS ASSIGN</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>CONTINUOUS ASSIGN</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCONTINUOUS_ASSIGN(CONTINUOUS_ASSIGN object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>LIST OF NET ASSIGNMENTS</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>LIST OF NET ASSIGNMENTS</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLIST_OF_NET_ASSIGNMENTS(LIST_OF_NET_ASSIGNMENTS object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>MODULE OR GENERATE ITEM DECLARATION</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>MODULE OR GENERATE ITEM DECLARATION</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMODULE_OR_GENERATE_ITEM_DECLARATION(MODULE_OR_GENERATE_ITEM_DECLARATION object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>PACKAGE OR GENERATE ITEM DECLARATION</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>PACKAGE OR GENERATE ITEM DECLARATION</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePACKAGE_OR_GENERATE_ITEM_DECLARATION(PACKAGE_OR_GENERATE_ITEM_DECLARATION object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>NET DECLARATION</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>NET DECLARATION</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNET_DECLARATION(NET_DECLARATION object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>LIST OF NET DECL ASSIGNMENTS</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>LIST OF NET DECL ASSIGNMENTS</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLIST_OF_NET_DECL_ASSIGNMENTS(LIST_OF_NET_DECL_ASSIGNMENTS object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>NET DECL ASSIGNMENT</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>NET DECL ASSIGNMENT</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNET_DECL_ASSIGNMENT(NET_DECL_ASSIGNMENT object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>UNPACKED DIMENSIONS</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>UNPACKED DIMENSIONS</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseUNPACKED_DIMENSIONS(UNPACKED_DIMENSIONS object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>DATA DECLARATION</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>DATA DECLARATION</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDATA_DECLARATION(DATA_DECLARATION object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>VARIABLE DECLARATION</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -192,6 +539,38 @@ public class SystemVerilogSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseVARIABLE_DECLARATION(VARIABLE_DECLARATION object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>LIST OF VARIABLE DECL ASSIGNMENTS</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>LIST OF VARIABLE DECL ASSIGNMENTS</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLIST_OF_VARIABLE_DECL_ASSIGNMENTS(LIST_OF_VARIABLE_DECL_ASSIGNMENTS object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>VARIABLE DECL ASSIGNMENT</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>VARIABLE DECL ASSIGNMENT</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseVARIABLE_DECL_ASSIGNMENT(VARIABLE_DECL_ASSIGNMENT object)
   {
     return null;
   }

@@ -15,7 +15,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Module/ports"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Module/module_items"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Module_item"/>
     <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Parameter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Parameter/name"/>
     </genClasses>
@@ -23,8 +22,38 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Port/direction"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//Port/name"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//VARIABLE_DECLARATION">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//VARIABLE_DECLARATION/name"/>
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//MODULE_ITEM"/>
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//NON_PORT_MODULE_ITEM"/>
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//MODULE_OR_GENERATE_ITEM"/>
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//MODULE_COMMON_ITEM"/>
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//CONTINUOUS_ASSIGN"/>
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//LIST_OF_NET_ASSIGNMENTS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//LIST_OF_NET_ASSIGNMENTS/assignments"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//MODULE_OR_GENERATE_ITEM_DECLARATION"/>
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//PACKAGE_OR_GENERATE_ITEM_DECLARATION"/>
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//NET_DECLARATION"/>
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//LIST_OF_NET_DECL_ASSIGNMENTS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//LIST_OF_NET_DECL_ASSIGNMENTS/nets"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//NET_DECL_ASSIGNMENT">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//NET_DECL_ASSIGNMENT/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//NET_DECL_ASSIGNMENT/dimensions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//NET_DECL_ASSIGNMENT/value"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//UNPACKED_DIMENSIONS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//UNPACKED_DIMENSIONS/left_bound"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//UNPACKED_DIMENSIONS/right_bound"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//DATA_DECLARATION"/>
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//VARIABLE_DECLARATION"/>
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//LIST_OF_VARIABLE_DECL_ASSIGNMENTS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//LIST_OF_VARIABLE_DECL_ASSIGNMENTS/variables"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//VARIABLE_DECL_ASSIGNMENT">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//VARIABLE_DECL_ASSIGNMENT/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//VARIABLE_DECL_ASSIGNMENT/dimensions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/com.ironglass.hdlforge/src-gen/com/ironglass/hdlforge/SystemVerilog.ecore#//VARIABLE_DECL_ASSIGNMENT/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -6,7 +6,7 @@
  */
 package com.ironglass.hdlforge.systemVerilog.impl;
 
-import com.ironglass.hdlforge.systemVerilog.Module_item;
+import com.ironglass.hdlforge.systemVerilog.MODULE_ITEM;
 import com.ironglass.hdlforge.systemVerilog.SystemVerilogPackage;
 
 import org.eclipse.emf.ecore.EClass;
@@ -15,21 +15,21 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Module item</b></em>'.
+ * An implementation of the model object '<em><b>MODULE ITEM</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class Module_itemImpl extends MinimalEObjectImpl.Container implements Module_item
+public class MODULE_ITEMImpl extends MinimalEObjectImpl.Container implements MODULE_ITEM
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected Module_itemImpl()
+  protected MODULE_ITEMImpl()
   {
     super();
   }
@@ -45,4 +45,4 @@ public class Module_itemImpl extends MinimalEObjectImpl.Container implements Mod
     return SystemVerilogPackage.Literals.MODULE_ITEM;
   }
 
-} //Module_itemImpl
+} //MODULE_ITEMImpl
