@@ -1,0 +1,1 @@
+HDLForge is a XText based Verilog/SystemVerilog editor.  The goal is to create an Eclipse editor.
